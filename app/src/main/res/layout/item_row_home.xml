@@ -1,85 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="8dp"
+    android:id="@+id/cardViewProjectHome"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/colorAccent"
+    android:clickable="true"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:strokeWidth="1dp">
 
-    <com.google.android.material.card.MaterialCardView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:backgroundTint="@color/colorAccent"
-        app:cardCornerRadius="16dp"
-        app:strokeWidth="1dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <ImageView
-               android:id="@+id/homeConfig"
-               android:layout_margin="8dp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:src="@drawable/ic_config_vertical"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
-           <androidx.constraintlayout.widget.ConstraintLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:padding="32dp"
-               >
-               <ImageView
-                   android:id="@+id/imageView"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:src="@drawable/ic_placeholder"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-               <LinearLayout
-                   android:id="@+id/linearLayout"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical"
-                   app:layout_constraintHorizontal_bias="0.1"
-                   app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                   app:layout_constraintEnd_toStartOf="@+id/progressBar"
-                   app:layout_constraintStart_toEndOf="@+id/imageView"
-                   app:layout_constraintTop_toTopOf="@+id/imageView">
+        <ImageView
+            android:id="@+id/imgProjectHome"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/round_corner_shape"
+            android:src="@drawable/ic_placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Titulo proyecto"
-                       app:layout_constraintTop_toTopOf="@+id/imageView" />
+        <LinearLayout
+            android:id="@+id/linearLayoutTextProjectHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/imgProjectHome"
+            app:layout_constraintEnd_toStartOf="@+id/progressBarProjectHome"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toEndOf="@+id/imgProjectHome"
+            app:layout_constraintTop_toTopOf="@+id/imgProjectHome">
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Descripcion proyecto" />
-               </LinearLayout>
+            <TextView
+                android:id="@+id/txtNameProjectHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coverme"
+                app:layout_constraintTop_toTopOf="@+id/imgProjectHome" />
 
-               <ProgressBar
-                   android:id="@+id/progressBar"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+            <TextView
+                android:id="@+id/txtDescProjectHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Proyecto movil ios/android" />
 
+            <TextView
+                android:id="@+id/txtSprintProjectHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sprint: Coverme tablet" />
+        </LinearLayout>
 
-           </androidx.constraintlayout.widget.ConstraintLayout>
-       </androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/progressBarProjectHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progress="50"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/progress_circle"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutTextProjectHome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutTextProjectHome" />
 
-
-
-    </com.google.android.material.card.MaterialCardView>
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtPercentHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50%"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarProjectHome"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarProjectHome"
+            app:layout_constraintStart_toStartOf="@+id/progressBarProjectHome"
+            app:layout_constraintTop_toTopOf="@+id/progressBarProjectHome" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

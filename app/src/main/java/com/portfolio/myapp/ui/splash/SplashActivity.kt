@@ -1,14 +1,13 @@
-package com.portfolio.myapp
+package com.portfolio.myapp.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.portfolio.myapp.R
 import com.portfolio.myapp.databinding.ActivityMainBinding
-import com.portfolio.myapp.extentions.backFromActivityAnimation
 import com.portfolio.myapp.extentions.goToActivityAnimation
 import com.portfolio.myapp.ui.login.LoginActivity
 
@@ -35,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
         val intent =
             Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
-        backFromActivityAnimation()
+        goToActivityAnimation()
         finish()
     }
     private fun goToHome(){

@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.google.android.material.button.MaterialButton
 import com.portfolio.myapp.R
 import com.portfolio.myapp.extentions.backFromActivityAnimation
+import com.portfolio.myapp.extentions.goToActivityAnimation
 import com.portfolio.myapp.ui.home.HomeActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
             val intent =
                 Intent(this, HomeActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-            backFromActivityAnimation()
+            goToActivityAnimation()
             finish()
         }
 
