@@ -10,7 +10,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:backgroundTint="@color/colorBackground"
+        android:backgroundTint="#00000000"
+        android:background="#00000000"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:liftOnScroll="true">
 
@@ -18,12 +19,20 @@
             android:id="@+id/topAppBarHome"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Proyectos"
+            android:backgroundTint="#00000000"
+            android:background="#00000000"
             android:textColor="#222b45"
             android:textSize="26sp"
             app:menu="@menu/top_app_bar"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            />
+            >
+            <ImageView
+                android:id="@+id/imgUser"
+                android:src="@drawable/ic_user_circle"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
 
     </com.google.android.material.appbar.AppBarLayout>

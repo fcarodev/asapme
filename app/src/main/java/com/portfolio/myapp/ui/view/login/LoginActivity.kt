@@ -13,16 +13,16 @@ import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.user.UserModel
 import com.portfolio.myapp.ui.view.home.HomeActivity
+import com.portfolio.myapp.ui.view.register.RegisterActivity
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity : AppCompatActivity(), BottomSheetRegisterUser.RegisterClickListener {
+class LoginActivity : AppCompatActivity() {
     lateinit var btnLogin: MaterialButton
     lateinit var txtAddUser: TextView
     private val viewModel by lazy { ViewModelProviders.of(this).get(LoginViewModel::class.java) }
-    var bottomSheetRegisterUser = BottomSheetRegisterUser(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -30,12 +30,12 @@ class LoginActivity : AppCompatActivity(), BottomSheetRegisterUser.RegisterClick
         txtAddUser = findViewById(R.id.txtAddUser)
 
 
-        txtAddUser.setOnClickListener {
-            bottomSheetRegisterUser.itemClickListener = this
-            bottomSheetRegisterUser.show(
-                this.supportFragmentManager,
-                "bottomSheetRegisterUser"
-            )
+        txtRegister.setOnClickListener {
+            val intent =
+                Intent(this, RegisterActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            goToActivityAnimation()
+            finish()
         }
 
         btnLogin.setOnClickListener {
@@ -67,15 +67,5 @@ class LoginActivity : AppCompatActivity(), BottomSheetRegisterUser.RegisterClick
         finish()
     }
 
-    override fun onRegisterClickListener(userModel: UserModel) {
-        Logger.i("onRegisterClickListener")
-        viewModel.registerUser(userModel).observe(this, Observer { user ->
-            if (user.innerId == "0") {
-                txtErrorHome.visibility = View.VISIBLE
-            } else {
-                goToHome()
-            }
-        })
-        bottomSheetRegisterUser.dismiss()
-    }
+
 }

@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.orhanobut.hawk.Hawk
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.project.ProjectModel
+import com.portfolio.myapp.utils.manager.HawkManager
 import kotlinx.android.synthetic.main.item_row_home.view.*
 
-class HomeAdapter(private val context:Context): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HomeAdapter(private val context:Context,var itemClickListener: ProjectClickListener): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
 
     private var projectList = mutableListOf<ProjectModel>() //retorna un ArrayList
@@ -20,7 +22,7 @@ class HomeAdapter(private val context:Context): RecyclerView.Adapter<HomeAdapter
        projectList = projectModels
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val view:View = LayoutInflater.from(context).inflate(R.layout.item_row_home,parent,false)
+        val view:View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_home,parent,false)
         return HomeViewHolder(view)
 
     }
@@ -60,6 +62,17 @@ class HomeAdapter(private val context:Context): RecyclerView.Adapter<HomeAdapter
 
             itemView.progressBarProjectHome.progress = projectModel.progress.toInt()
             itemView.cardViewProjectHome.getBackground().setTint(Color.parseColor(projectModel.colorBackground.toString()))
+
+            itemView.cardViewProjectHome.setOnClickListener {
+                HawkManager().setCurrentProject(projectModel)
+                itemClickListener.onProjectClickListener(projectModel.innerId.toString())
+            }
         }
     }
+
+
+    interface ProjectClickListener {
+        fun onProjectClickListener(innerId:String)
+    }
+
 }

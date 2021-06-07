@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.view.projectdetail.ProjectDetailActivity">
 
     <RelativeLayout
@@ -17,7 +18,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="0dp"
@@ -31,24 +32,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="16dp">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBackDetailProject"
+                    style="@style/normalMaterialButtonArrow"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <TextView
+                    android:id="@+id/txtTitleDetailProject"
+                    style="@style/textTitleActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_settings"
+                    android:text="Detalles projecto"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnBackDetailProject"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/btnBackDetailProject" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/imgEditProject"
+                    style="@style/materialCircleButtonEdit"
                     app:layout_constraintBottom_toTopOf="@+id/progressBarProjectDetail"
                     app:layout_constraintEnd_toEndOf="@+id/progressBarProjectDetail"
                     app:layout_constraintStart_toStartOf="@+id/progressBarProjectDetail"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                     android:id="@+id/imgProjectDetail"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/round_corner_shape"
                     android:src="@drawable/ic_placeholder"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnBackDetailProject" />
 
                 <LinearLayout
                     android:id="@+id/linearLayoutTextProjectDetail"

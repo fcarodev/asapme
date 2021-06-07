@@ -17,47 +17,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_marginTop="32dp"
+            android:id="@+id/textView4"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingresa a tu cuenta"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etUsername"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/editTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:hint="Usuario"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimaryText"
-            app:boxStrokeColor="@color/colorPrimary"
-            app:hintTextColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3">
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
+                style="@style/editTextInput"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary" />
+                android:textSize="17sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/editTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:hint="Password"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimaryText"
-            app:boxStrokeColor="@color/colorPrimary"
-            app:hintTextColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etUsername">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
+                android:singleLine="true"
+                style="@style/editTextInput"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary" />
+                android:textSize="17sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +87,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
             style="@style/normalMaterialButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:letterSpacing="0"
             android:text="Iniciar sesion"
@@ -85,70 +96,47 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtErrorHome" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
 
+        <Button
+            android:id="@+id/txtForgotPass"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Olvidaste tu clave?"
-            android:textColor="@color/colorPrimaryText"
+            android:text="¿Olvidaste tu clave?"
+            android:layout_marginTop="32dp"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="o inicia con"
-            android:textColor="@color/colorPrimaryText"
-
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/txtAddUser"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btnGoogleLogin"
+            <TextView
+                android:id="@+id/txtAddUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_google" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btnFacebookLogin"
+                android:text="¿Eres nuevo?"
+                android:textColor="@color/colorSecondaryText" />
+            <Button
+                android:id="@+id/txtRegister"
+                style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_facebook" />
-
+                android:text="Registrate"
+                />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/txtAddUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="nuevo usuario? crear cuenta"
-            android:textColor="@color/colorPrimaryText"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

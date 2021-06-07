@@ -3,21 +3,18 @@ package com.portfolio.myapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.portfolio.myapp.data.model.project.ProjectModel
-import com.portfolio.myapp.data.model.user.UserProvider
 import com.portfolio.myapp.data.model.user.UserModel
+import com.portfolio.myapp.data.model.user.UserProvider
 
-class LoginViewModel: ViewModel() {
+class RegisterViewModel: ViewModel()  {
     val repo = UserProvider()
 
-    fun login(mail:String,pass:String):LiveData<UserModel>{
+
+    fun registerUser(userModel: UserModel): LiveData<UserModel> {
         val mutableData = MutableLiveData<UserModel>()
-        repo.userLogin(mail,pass).observeForever{ user ->
+        repo.registerUser(userModel).observeForever{ user ->
             mutableData.value = user
         }
         return mutableData
     }
-
-
-
 }
