@@ -11,10 +11,32 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorAccent">#03A9F4</color>
+    <color name="colorErrorText">#b1001a</color>
     <color name="colorLightColor">#C5CAE9</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorBackground">#f7f9fc</color>
+    <color name="idds_color_secondary_op19">#1a002d5a</color>
+    <color name="idds_card_outline_color">#1e000000</color>
+    <color name="color_icon_register">#757575</color>
+
+    <!--color buttons-->
+    <color name="colorButtonPrimary">#0050ff</color>
+    <color name="colorButtonTextPrimary">#ffffff</color>
+
+    <!--color text-->
+    <color name="colorTextBlackTitle">#000000</color>
+    <color name="colorTextBlackCardTitle">#de000000</color>
+    <color name="colorTextBlueTitle">#0050ff</color>
+    <color name="colorTextNormal">#333333</color>
+
+    <!--color edit text-->
+    <color name="colorTextHint">#8a000000</color>
+    <color name="colorTextEditText">#0050ff</color>
+
+
+
+
 
 </resources>

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 }
 apply plugin: 'kotlin-android-extensions'
 
@@ -69,5 +70,7 @@ dependencies {
     implementation "com.orhanobut:hawk:2.0.1"
     //FirebaseFirestore
     implementation "com.google.firebase:firebase-firestore:23.0.1"
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.4.0'
 
 }
