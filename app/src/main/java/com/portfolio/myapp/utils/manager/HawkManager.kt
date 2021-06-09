@@ -8,6 +8,10 @@ import com.portfolio.myapp.utils.constant.CURRENT_PROJECT
 
 class HawkManager {
 
+    fun removeAll(){
+        Hawk.deleteAll()
+    }
+
     fun getUserLoggedIn(): UserModel {
         if(Hawk.contains(USER)){
             return Hawk.get(USER)
@@ -30,4 +34,5 @@ class HawkManager {
             return ProjectModel()
         }
     }
+
 }

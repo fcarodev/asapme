@@ -1,8 +1,11 @@
 package com.portfolio.myapp.data.model.sprint
 
 data class SprintModel(
-    val idProject:String = "1",
-    val dateFinish:String="10-10-1010",
-    val description:String="sample description",
-    val name:String="sample name"
+    var innerId:String = "-1",
+    var idProject:String = "1",
+    var dateFinish:String="10-10-1010",
+    var dateInit:String="10-10-1010",
+    var description:String="sample description",
+    var name:String="sample name",
+    var isActive:Boolean = false
 )

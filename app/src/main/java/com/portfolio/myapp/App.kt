@@ -18,6 +18,5 @@ class App: Application() {
             .methodOffset(7) // (Optional) Hides internal method calls up to offset. Default 5
             .build()
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
-
     }
 }

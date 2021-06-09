@@ -40,8 +40,8 @@ class RegisterActivity : AppCompatActivity() {
             userToRegister.rut = rut.text.toString()
             userToRegister.name = name.text.toString()
             userToRegister.lastName = lastName.text.toString()
+            userToRegister.password = pass.text.toString()
             userToRegister.email = email.text.toString()
-            userToRegister.email = pass.text.toString()
             viewModel.registerUser(userToRegister).observe(this, Observer { user ->
                 if (user.innerId == "0") {
                     Toast.makeText(this,"error al agregar",Toast.LENGTH_SHORT).show()

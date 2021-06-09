@@ -14,7 +14,6 @@ class UserProvider {
 
     fun userLogin(mail: String, pass: String):LiveData<UserModel> {
         val mutableData = MutableLiveData<UserModel>()
-        mutableData.value = UserModel()
         db.collection("user")
             .whereEqualTo("email", mail)
             .whereEqualTo("password", pass).get()
@@ -31,6 +30,9 @@ class UserProvider {
                         mutableData.value = userData
                         HawkManager().setUserLoggedIn(userData)
                         Logger.i("user: ${Gson().toJson(userData)}")
+                    }
+                    if (null == mutableData.value){
+                        mutableData.value = UserModel()
                     }
                 }else{
                     mutableData.value = UserModel()

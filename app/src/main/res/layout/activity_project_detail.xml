@@ -54,7 +54,7 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/imgEditProject"
+                    android:id="@+id/imgEditProjectStyle"
                     style="@style/materialCircleButtonEdit"
                     app:layout_constraintBottom_toTopOf="@+id/progressBarProjectDetail"
                     app:layout_constraintEnd_toEndOf="@+id/progressBarProjectDetail"
@@ -137,4 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relative" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

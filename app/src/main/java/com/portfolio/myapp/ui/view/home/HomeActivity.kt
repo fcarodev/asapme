@@ -3,6 +3,7 @@ package com.portfolio.myapp.ui.view.home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,10 +12,14 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
+import com.portfolio.myapp.data.model.project.ProjectModel
 import com.portfolio.myapp.data.model.user.UserModel
 import com.portfolio.myapp.ui.view.projectdetail.ProjectDetailActivity
+import com.portfolio.myapp.ui.view.registerProject.RegisterProjectActivity
+import com.portfolio.myapp.ui.view.splash.SplashActivity
 import com.portfolio.myapp.ui.view.updateUser.ChangePasswordActivity
 import com.portfolio.myapp.ui.view.updateUser.UpdateUserActivity
+import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
 import com.portfolio.myapp.viewmodel.HomeViewModel
@@ -40,6 +45,13 @@ class HomeActivity : AppCompatActivity() , BottomSheetProfile.ProfileClickListen
         swipeRefreshAudit.setOnRefreshListener {
             getAllProjectByUser()
         }
+
+        btnAddProjectEmpty.setOnClickListener {
+            goToRegisterProject()
+        }
+        btnAddProject.setOnClickListener{
+            goToRegisterProject()
+        }
        topAppBar.setOnMenuItemClickListener { menuItem ->
            when (menuItem.itemId) {
                R.id.search -> {
@@ -63,15 +75,31 @@ class HomeActivity : AppCompatActivity() , BottomSheetProfile.ProfileClickListen
     fun getAllProjectByUser(){
         val id = HawkManager().getUserLoggedIn().innerId
         viewModel.getAllProjectByUser(id).observe(this, Observer { projectList ->
-            Logger.i(Gson().toJson(projectList))
-            adapter.setListProject(projectList)
-            adapter.notifyDataSetChanged()
-            if(swipeRefreshAudit.isRefreshing){
-                swipeRefreshAudit.isRefreshing = false
+            if(projectList.isEmpty()){
+                showEmptyList()
+            }else{
+                showDataList(projectList)
             }
+
         })
     }
 
+    fun showEmptyList(){
+        recyclerViewHome.visibility = View.GONE
+        itemEmpty.visibility = View.VISIBLE
+        btnAddProject.visibility = View.GONE
+    }
+    fun showDataList(projectList:MutableList<ProjectModel>){
+        Logger.i(Gson().toJson(projectList))
+        itemEmpty.visibility = View.GONE
+        btnAddProject.visibility = View.VISIBLE
+        recyclerViewHome.visibility = View.VISIBLE
+        adapter.setListProject(projectList)
+        adapter.notifyDataSetChanged()
+        if(swipeRefreshAudit.isRefreshing){
+            swipeRefreshAudit.isRefreshing = false
+        }
+    }
     override fun onChangePasswordClickListener() {
         bottomSheetRegisterUser.dismiss()
         goToChangePassword()
@@ -83,8 +111,28 @@ class HomeActivity : AppCompatActivity() , BottomSheetProfile.ProfileClickListen
 
     }
 
+    override fun onLogoutClickListener() {
+        bottomSheetRegisterUser.dismiss()
+        HawkManager().removeAll()
+        goToSplash()
+    }
+
     override fun onProjectClickListener(innerId: String) {
         goToDetailProject()
+    }
+    fun goToRegisterProject(){
+        val intent =
+            Intent(this, RegisterProjectActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        goToActivityAnimation()
+        finish()
+    }
+    fun goToSplash(){
+        val intent =
+            Intent(this, SplashActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        backFromActivityAnimation()
+        finish()
     }
 
     fun goToDetailProject(){

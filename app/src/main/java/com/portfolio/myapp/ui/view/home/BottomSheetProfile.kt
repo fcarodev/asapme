@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.user.UserModel
+import com.portfolio.myapp.utils.manager.HawkManager
 import kotlinx.android.synthetic.main.sheet_profile_user.*
 import kotlinx.android.synthetic.main.sheet_register_user.*
 import kotlinx.android.synthetic.main.sheet_register_user.view.*
@@ -26,11 +27,18 @@ class BottomSheetProfile(userModel: UserModel,var itemClickListener: ProfileClic
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
+            val userLogged = HawkManager().getUserLoggedIn()
+            txtNameUserProfile.text = "${userLogged.name} ${userLogged.lastName}"
+            txtRutUserProfile.text = userLogged.rut
+            txtMailUserProfile.text = userLogged.email
             btnEditProfile.setOnClickListener {
                 itemClickListener.onChangeProfileClickListener()
             }
             txtChangePass.setOnClickListener {
                 itemClickListener.onChangePasswordClickListener()
+            }
+            txtLogout.setOnClickListener {
+                itemClickListener.onLogoutClickListener()
             }
 
         }
@@ -38,5 +46,6 @@ class BottomSheetProfile(userModel: UserModel,var itemClickListener: ProfileClic
         interface ProfileClickListener {
             fun onChangePasswordClickListener()
             fun onChangeProfileClickListener()
+            fun onLogoutClickListener()
         }
 }
