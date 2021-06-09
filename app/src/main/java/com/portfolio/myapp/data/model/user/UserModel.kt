@@ -5,5 +5,6 @@ data class UserModel(
     var email:String="sample@mail.com",
     var name:String="sample name",
     var lastName:String="sample lastname",
-    var password:String="123"
+    var password:String="123",
+    var rut:String="-1"
 )

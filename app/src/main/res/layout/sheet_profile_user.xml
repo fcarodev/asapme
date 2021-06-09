@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    app:behavior_hideable="true"
+    app:cardBackgroundColor="@color/white"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/idds_color_secondary_op19"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="0dp" />
+
+        <TextView
+            style="@style/textTitleActivity"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mi perfil"
+            android:textSize="24sp" />
+        <View
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone"
+            android:background="@color/idds_card_outline_color" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditProfile"
+            style="@style/materialCircleButtonEdit"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/textView"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mi perfil"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgProfileUser"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/txtNameUserProfile"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Felipe Caro"
+            android:textSize="20sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgProfileUser" />
+
+        <TextView
+            android:id="@+id/txtRutUserProfile"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18.236.924-1"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNameUserProfile" />
+
+        <TextView
+            android:id="@+id/txtMailUserProfile"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="felipe@algo.com"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtRutUserProfile" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/txtChangePass"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cambiar contrasena"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtMailUserProfile" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/txtLogout"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesion"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtChangePass" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

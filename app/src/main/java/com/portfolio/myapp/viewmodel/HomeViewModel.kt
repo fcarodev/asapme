@@ -10,13 +10,6 @@ import com.portfolio.myapp.data.model.user.UserModel
 class HomeViewModel: ViewModel() {
     val repo = ProjectProvider()
 
-    fun getAllProjects():LiveData<MutableList<ProjectModel>>{
-        val mutableData = MutableLiveData<MutableList<ProjectModel>>()
-        repo.getAllProjects().observeForever{ projectList ->
-            mutableData.value = projectList
-        }
-        return mutableData
-    }
     fun getAllProjectByUser(idUser:String):LiveData<MutableList<ProjectModel>>{
         val mutableData = MutableLiveData<MutableList<ProjectModel>>()
         repo.getProjectOfUser(idUser).observeForever{ projectList ->

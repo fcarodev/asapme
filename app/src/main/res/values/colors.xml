@@ -9,7 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#303F9F</color>
     <color name="colorAccent">#03A9F4</color>
     <color name="colorErrorText">#b1001a</color>
     <color name="colorLightColor">#C5CAE9</color>
@@ -22,19 +22,26 @@
     <color name="color_icon_register">#757575</color>
 
     <!--color buttons-->
-    <color name="colorButtonPrimary">#0050ff</color>
+    <color name="colorButtonPrimary">#303F9F</color>
     <color name="colorButtonTextPrimary">#ffffff</color>
 
     <!--color text-->
     <color name="colorTextBlackTitle">#000000</color>
     <color name="colorTextBlackCardTitle">#de000000</color>
-    <color name="colorTextBlueTitle">#0050ff</color>
+    <color name="colorTextBlueTitle">#303F9F</color>
     <color name="colorTextNormal">#333333</color>
+    <color name="colorTextLink">#003cbf</color>
 
     <!--color edit text-->
     <color name="colorTextHint">#8a000000</color>
-    <color name="colorTextEditText">#0050ff</color>
+    <color name="colorTextEditText">#303F9F</color>
 
+
+
+    <color name="colorTaskUnfinish">#f2f2f7</color>
+    <color name="colorTaskfinish">#1a003cbf</color>
+
+    <color name="colorTransparencyTileTint">#DCDCDC</color>
 
 
 

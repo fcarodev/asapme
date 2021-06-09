@@ -22,6 +22,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -72,5 +73,13 @@ dependencies {
     implementation "com.google.firebase:firebase-firestore:23.0.1"
     //lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
+    //and color picker
+    implementation "codes.side:andcolorpicker:0.6.2"
+    //mikepenz - materialdrawer
+    implementation "com.mikepenz:materialdrawer:8.4.0"
+    //mikepenz - iconics
+    implementation "com.mikepenz:iconics-core:5.2.8"
+    //mikepenz - material-design-icons-dx-typeface
+    implementation "com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar"
 
 }
