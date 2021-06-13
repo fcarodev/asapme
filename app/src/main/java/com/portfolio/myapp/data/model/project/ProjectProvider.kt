@@ -57,8 +57,7 @@ class ProjectProvider {
     fun getProjectOfUser(idUser: String):LiveData<MutableList<ProjectModel>>  {
 
         val mutableData = MutableLiveData<MutableList<ProjectModel>>()
-        FirebaseFirestore.getInstance()
-            .collection("project")
+        db.collection("project")
             .whereEqualTo("userId",idUser)
             .get()
             .addOnSuccessListener { resultProject ->
@@ -119,7 +118,7 @@ class ProjectProvider {
                 Logger.i("Success add project")
                 projectModel.innerId = it.id
                 updateProject2(projectModel)
-                createSprint(projectModel.innerId!!,projectModel.currentSprint)
+                //createSprint(projectModel.innerId!!,projectModel.currentSprint)
                 mutableData.value = projectModel
             }
             .addOnFailureListener {
@@ -128,36 +127,8 @@ class ProjectProvider {
         return mutableData
     }
 
-    private fun createSprint(projectId: String,sprintNAme:String) {
-        val sprint = SprintModel()
-        sprint.dateFinish = "10-10-10"
-        sprint.dateInit = "10-10-10"
-        sprint.description = "initial"
-        sprint.idProject =projectId
-        sprint.name = sprintNAme
-        sprint.isActive = true
-        db.collection("sprint")
-            .add(sprint).addOnSuccessListener {
-                Logger.i("Success add Sprint")
-                sprint.innerId = it.id
-                updateSprint2(sprint)
-            }
-            .addOnFailureListener {
-                Logger.i("Fail add Sprint")
-            }
-    }
-    private fun updateSprint2(sprint: SprintModel){
-        db.collection("sprint")
-            .document(sprint.innerId!!)
-            .update("innerId", sprint.innerId)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Logger.i("Sprint Success update")
-                } else {
-                    Logger.i("Sprint Fail update")
-                }
-            }
-    }
+
+
     private fun updateProject2(projectModel: ProjectModel){
         db.collection("project")
             .document(projectModel.innerId!!)

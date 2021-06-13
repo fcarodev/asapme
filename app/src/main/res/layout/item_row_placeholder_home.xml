@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewProjectHomePlaceholder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:backgroundTint="@color/white"
+    android:clickable="true"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgProjectHomePlaceholder"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/round_corner_shape_placeholder"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutTextProjectHomePlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgProjectHomePlaceholder"
+                    app:layout_constraintEnd_toStartOf="@+id/imgPlaceholderProgress"
+                    app:layout_constraintHorizontal_bias="0.19"
+                    app:layout_constraintStart_toEndOf="@+id/imgProjectHomePlaceholder"
+                    app:layout_constraintTop_toTopOf="@+id/imgProjectHomePlaceholder">
+
+                    <ImageView
+                        android:src="@drawable/shape_rectangle"
+                        android:layout_width="80dp"
+                        android:layout_height="16dp" />
+                    <ImageView
+                        android:src="@drawable/shape_rectangle"
+                        android:layout_width="100dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="6dp"/>
+                    <ImageView
+                        android:src="@drawable/shape_rectangle"
+                        android:layout_width="180dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="6dp"/>
+
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/imgPlaceholderProgress"
+                    android:src="@drawable/progress_circle_placeholder"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/linearLayoutTextProjectHomePlaceholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/linearLayoutTextProjectHomePlaceholder"/>
+
+                <ImageView
+                    android:src="@drawable/shape_rectangle"
+                    android:layout_width="20dp"
+                    android:layout_height="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgPlaceholderProgress"
+                    app:layout_constraintEnd_toEndOf="@+id/imgPlaceholderProgress"
+                    app:layout_constraintStart_toStartOf="@+id/imgPlaceholderProgress"
+                    app:layout_constraintTop_toTopOf="@+id/imgPlaceholderProgress"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

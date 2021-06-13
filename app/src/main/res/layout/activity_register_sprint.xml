@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.view.updateUser.ChangePasswordActivity">
+    tools:context=".ui.view.registerSprint.RegisterSprintActivity">
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBackAddProject"
+        android:id="@+id/btnBackAddSprint"
         style="@style/normalMaterialButtonArrow"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -18,13 +18,13 @@
         style="@style/textTitleActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Projecto"
+        android:text="Sprint"
         android:textSize="20sp"
-        android:id="@+id/txtTitleCreateProject"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBackUpdatePass"
+        android:id="@+id/txtTitleCreateSprint"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBackAddSprint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnBackAddProject" />
+        app:layout_constraintTop_toTopOf="@+id/btnBackAddSprint" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -37,17 +37,17 @@
 
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/txtTitleSprintForm"
             style="@style/textTitleActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nuevo projecto"
+            android:text="Nuevo sprint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etNameAddProject"
+            android:id="@+id/etNameAddSprint"
             style="@style/editTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,10 +55,10 @@
             android:hint="Nombre"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6">
+            app:layout_constraintTop_toBottomOf="@+id/txtTitleSprintForm">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameProject"
+                android:id="@+id/nameSprint"
                 style="@style/editTextInput"
                 android:singleLine="true"
                 android:imeOptions="actionNext"
@@ -69,7 +69,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etDescAddProject"
+            android:id="@+id/etDescAddSprint"
             style="@style/editTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,10 +77,10 @@
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etNameAddProject">
+            app:layout_constraintTop_toBottomOf="@+id/etNameAddSprint">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descProject"
+                android:id="@+id/descSprint"
                 style="@style/editTextInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,22 +91,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/etSprintAddProject"
+            android:id="@+id/etDateInitAddSprint"
             style="@style/editTextLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Sprint"
-            android:visibility="gone"
+            android:hint="Fecha inicio"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etDescAddProject">
+            app:layout_constraintTop_toBottomOf="@+id/etDescAddSprint">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/sprintProject"
+                android:id="@+id/dateInitSprint"
                 style="@style/editTextInput"
                 android:singleLine="true"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp" />
@@ -114,21 +113,42 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etDateFinishAddSprint"
+            style="@style/editTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha termino"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etDateInitAddSprint">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateFinishSprint"
+                style="@style/editTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textSize="17sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRegisterProject"
+            android:id="@+id/btnRegisterSprint"
             android:layout_marginTop="32dp"
             style="@style/normalMaterialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:letterSpacing="0"
             android:alpha="0"
-            android:text="Crear projecto"
+            android:letterSpacing="0"
+            android:text="Crear sprint"
             app:cornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etSprintAddProject" />
+            app:layout_constraintTop_toBottomOf="@+id/etDateFinishAddSprint" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

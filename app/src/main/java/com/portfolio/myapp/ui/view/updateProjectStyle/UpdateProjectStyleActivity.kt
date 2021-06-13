@@ -23,7 +23,7 @@ import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.project.ProjectModel
-import com.portfolio.myapp.ui.view.projectdetail.ProjectDetailActivity
+import com.portfolio.myapp.ui.view.projectdetail.SprintActivity
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
 import com.portfolio.myapp.viewmodel.StyleProjectViewModel
@@ -158,7 +158,7 @@ class UpdateProjectStyleActivity : AppCompatActivity() {
     }
     fun goToDetailsProject() {
         val intent =
-            Intent(this, ProjectDetailActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            Intent(this, SprintActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         backFromActivityAnimation()
         finish()

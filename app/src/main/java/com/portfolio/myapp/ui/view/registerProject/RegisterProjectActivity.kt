@@ -5,18 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.github.florent37.viewanimator.ViewAnimator
 import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.project.ProjectModel
 import com.portfolio.myapp.ui.view.home.HomeActivity
-import com.portfolio.myapp.ui.view.projectdetail.ProjectDetailActivity
+import com.portfolio.myapp.ui.view.projectdetail.SprintActivity
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
 import com.portfolio.myapp.viewmodel.CreateProjectViewModel
-import com.portfolio.myapp.viewmodel.StyleProjectViewModel
 import kotlinx.android.synthetic.main.activity_register_project.*
+import kotlinx.android.synthetic.main.activity_register_project.textView6
 
 class RegisterProjectActivity : AppCompatActivity() {
     private val viewModel by lazy {
@@ -29,13 +30,47 @@ class RegisterProjectActivity : AppCompatActivity() {
         btnBackAddProject.setOnClickListener { goToHome() }
         btnRegisterProject.setOnClickListener { createEmptyProject() }
 
+        ViewAnimator
+            .animate(btnBackAddProject)
+            .alpha(0f, 1f)
+            .duration(800)
+
+            .andAnimate(txtTitleCreateProject)
+            .alpha(0f, 1f)
+            .duration(800)
+
+            .andAnimate(textView6)
+            .translationX(2000f, 0f)
+            .alpha(0f, 1f)
+            .duration(800)
+
+            .andAnimate(etNameAddProject)  // desde aqui 200 mas
+            .translationX(2200f, 0f)
+            .alpha(0f, 1f)
+            .duration(800)
+
+            .andAnimate(etDescAddProject)
+            .translationX(2400f, 0f)
+            .alpha(0f, 1f)
+            .duration(800)
+
+            .andAnimate(etSprintAddProject)
+            .alpha(0f, 1f)
+            .duration(800)
+            .translationX(2600f, 0f)
+
+            .thenAnimate(btnRegisterProject)
+            .alpha(0f, 1f)
+            .duration(800)
+            .start()
+
     }
 
     private fun createEmptyProject() {
         val projectModel = ProjectModel()
         projectModel.name = nameProject.text.toString()
         projectModel.description = descProject.text.toString()
-        projectModel.currentSprint = sprintProject.text.toString()
+        //projectModel.currentSprint = sprintProject.text.toString()
         projectModel.colorBackground = "#303F9F"
         projectModel.colorText = "#ffffff"
         projectModel.userId = HawkManager().getUserLoggedIn().innerId
@@ -53,7 +88,7 @@ class RegisterProjectActivity : AppCompatActivity() {
     }
     fun goToDetailProject(){
         val intent =
-            Intent(this, ProjectDetailActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            Intent(this, SprintActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         goToActivityAnimation()
         finish()

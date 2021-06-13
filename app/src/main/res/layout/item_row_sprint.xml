@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:background="@color/white"
+    android:layout_marginRight="8dp"
+    app:cardCornerRadius="32dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardDetailProject"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/txtSprintName"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sprint: ipad tablet"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtInitDateSprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio: 22-12-2020"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSprintName" />
+
+        <TextView
+            android:id="@+id/txtFinishDateSprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Termino: 12-06-2021"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtInitDateSprint" />
+
+
+        <ProgressBar
+            android:id="@+id/progressSprint"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminateOnly="false"
+            android:progress="00"
+            android:progressDrawable="@drawable/progress_circle"
+            app:layout_constraintBottom_toBottomOf="@+id/txtFinishDateSprint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtSprintName" />
+
+        <TextView
+            android:id="@+id/txtSprintPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0%"
+            android:textSize="8dp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/progressSprint"
+            app:layout_constraintEnd_toEndOf="@+id/progressSprint"
+            app:layout_constraintStart_toStartOf="@+id/progressSprint"
+            app:layout_constraintTop_toTopOf="@+id/progressSprint" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

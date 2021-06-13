@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.sheet_profile_user.*
 import kotlinx.android.synthetic.main.sheet_register_user.*
 import kotlinx.android.synthetic.main.sheet_register_user.view.*
 
-class BottomSheetProfile(userModel: UserModel,var itemClickListener: ProfileClickListener) : BottomSheetDialogFragment() {
+class BottomSheetProfile(var itemClickListener: ProfileClickListener) : BottomSheetDialogFragment() {
 
         override fun onCreateView(
             inflater: LayoutInflater,

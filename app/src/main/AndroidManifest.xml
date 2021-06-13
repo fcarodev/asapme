@@ -12,12 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
-        <activity android:name=".ui.view.registerProject.RegisterProjectActivity"></activity>
+        <activity android:name=".ui.view.registerSprint.RegisterSprintActivity" />
+        <activity android:name=".ui.view.task.TaskActivity" />
+        <activity android:name=".ui.view.registerProject.RegisterProjectActivity" />
         <activity android:name=".ui.view.updateProjectStyle.UpdateProjectStyleActivity" />
         <activity android:name=".ui.view.updateUser.ChangePasswordActivity" />
         <activity android:name=".ui.view.updateUser.UpdateUserActivity" />
         <activity android:name=".ui.view.register.RegisterActivity" />
-        <activity android:name=".ui.view.projectdetail.ProjectDetailActivity" />
+        <activity android:name=".ui.view.projectdetail.SprintActivity" />
         <activity android:name=".ui.view.home.HomeActivity" />
         <activity android:name=".ui.view.login.LoginActivity" />
         <activity android:name=".ui.view.splash.SplashActivity">

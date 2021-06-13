@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    app:behavior_hideable="true"
+    app:cardBackgroundColor="@color/white"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+
+   <com.google.android.material.card.MaterialCardView
+       android:id="@+id/cardDetailSprint"
+       android:layout_width="match_parent"
+       android:backgroundTint="@color/white"
+       android:layout_height="wrap_content"
+       android:elevation="8dp"
+       app:cardElevation="8dp">
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btEditSprint"
+               style="@style/materialCircleButtonEdit"
+               android:layout_marginStart="16dp"
+               app:layout_constraintBottom_toBottomOf="@+id/textView"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="@+id/textView" />
+
+           <TextView
+               android:id="@+id/textView"
+               style="@style/textTitleActivity"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="Detalles sprint"
+               android:textSize="24sp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+
+
+           <TextView
+               android:id="@+id/txtLabelNameSprint"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="Nombre"
+               android:textColor="@android:color/darker_gray"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+           <TextView
+               android:id="@+id/txtNameSprint"
+               style="@style/textTitleActivity"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Sprint A"
+               android:textSize="20sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtLabelNameSprint" />
+           <TextView
+               android:id="@+id/txtLabelDesctSprint"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="Descripcion"
+               android:textColor="@android:color/darker_gray"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtNameSprint" />
+
+           <TextView
+               android:id="@+id/txtDesctSprint"
+               style="@style/textTitleActivity"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Descripcion"
+               android:textSize="20sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtLabelDesctSprint" />
+           <TextView
+               android:id="@+id/txtLabelInitDateSprint"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="Fecha inicio"
+               android:textColor="@android:color/darker_gray"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtDesctSprint" />
+
+           <TextView
+               android:id="@+id/txtInitDateSprint"
+               style="@style/textTitleActivity"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="09-11-2021"
+               android:textSize="20sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtLabelInitDateSprint" />
+
+           <TextView
+               android:id="@+id/txtLabelFinishDateSprint"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="Fecha termino"
+               android:textColor="@android:color/darker_gray"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtInitDateSprint" />
+
+           <TextView
+               android:id="@+id/txtFinishDateSprint"
+               style="@style/textTitleActivity"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="22-12-2021"
+               android:textSize="20sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtLabelFinishDateSprint" />
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btnStartSprint"
+               style="@style/textLink"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:gravity="left"
+               android:text="Comenzar sprint"
+               android:textSize="17sp"
+               app:icon="@drawable/ic_rigth_arrow"
+               app:iconGravity="end"
+               app:iconTint="@color/colorPrimary"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtFinishDateSprint" />
+
+           <View
+               android:id="@+id/line1"
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="#d8d8d8"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/btnStartSprint" />
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btnAddTast"
+               style="@style/textLink"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="left"
+               android:text="Agregar tarea"
+               android:textSize="17sp"
+               app:icon="@drawable/ic_rigth_arrow"
+               app:iconGravity="end"
+               app:iconTint="@color/colorPrimary"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+           <View
+               android:id="@+id/line2"
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="#d8d8d8"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/btnAddTast" />
+
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btnDeleteSprint"
+               style="@style/textLink"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="left"
+               android:text="Eliminar sprint"
+               android:textColor="#ff1744"
+               android:textSize="17sp"
+               app:icon="@drawable/ic_rigth_arrow"
+               app:iconGravity="end"
+               app:iconTint="#ff1744"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/line2" />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+   </com.google.android.material.card.MaterialCardView>
+
+
+</LinearLayout>

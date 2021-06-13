@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat.animate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
@@ -15,6 +16,7 @@ import com.portfolio.myapp.ui.view.register.RegisterActivity
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import com.github.florent37.viewanimator.ViewAnimator
 
 class LoginActivity : AppCompatActivity() {
     lateinit var btnLogin: MaterialButton
@@ -34,6 +36,31 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             doLogin()
         }
+
+        val durationEntrance = 800.toLong()
+        ViewAnimator
+            .animate(textView4)
+            .translationX(1000f, 0f)
+            .alpha(0f, 1f)
+            .duration(durationEntrance)
+            .andAnimate(etUsername)
+            .translationX(2000f, 0f)
+            .alpha(0f, 1f)
+            .duration(800)
+            .andAnimate(etPassword)
+            .translationX(2000f, 0f)
+            .alpha(0f, 1f)
+            .duration(800)
+            .thenAnimate(btnLogin)
+            .alpha(0f, 1f)
+            .duration(800)
+            .andAnimate(txtForgotPass)
+            .alpha(0f, 1f)
+            .duration(800)
+            .andAnimate(linearBottomLogin)
+            .alpha(0f, 1f)
+            .duration(800)
+            .start()
     }
 
     fun doLogin() {

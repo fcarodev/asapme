@@ -45,11 +45,10 @@ class UserProvider {
         val mutableData = MutableLiveData<UserModel>()
         db.collection("user")
             .add(userModel).addOnCompleteListener { task ->
-                val userData = UserModel()
                 if (task.isSuccessful) {
                     userModel.innerId =  task.result!!.id
                     mutableData.value = userModel
-                    HawkManager().setUserLoggedIn(userData)
+                    HawkManager().setUserLoggedIn(userModel)
                     updateUser(userModel)
                 } else {
                     mutableData.value = UserModel()

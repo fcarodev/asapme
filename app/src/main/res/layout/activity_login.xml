@@ -86,6 +86,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
+            android:alpha="0"
             style="@style/normalMaterialButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,6 +101,7 @@
         <Button
             android:id="@+id/txtForgotPass"
             style="@style/textLink"
+            android:alpha="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="¿Olvidaste tu clave?"
@@ -112,9 +114,11 @@
 
 
         <LinearLayout
+            android:id="@+id/linearBottomLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:alpha="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

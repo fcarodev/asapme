@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear cuenta"
+        android:id="@+id/txtTitleRegisterUser"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnBackRegister"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,6 +160,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
+            android:alpha="0"
             android:layout_marginTop="32dp"
             style="@style/normalMaterialButton"
             android:layout_width="wrap_content"

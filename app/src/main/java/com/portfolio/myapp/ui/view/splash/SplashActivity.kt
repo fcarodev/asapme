@@ -6,21 +6,18 @@ import android.os.Bundle
 import android.os.Handler
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
-import com.portfolio.myapp.data.model.project.ProjectModel
 import com.portfolio.myapp.databinding.ActivityMainBinding
+import com.portfolio.myapp.ui.view.home.HomeActivity
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.ui.view.login.LoginActivity
-
-
+import com.portfolio.myapp.utils.manager.HawkManager
 
 
 class SplashActivity : AppCompatActivity() {
-    enum class Signal { OPEN, CLOSED, SENDING }
-    val TIME:Long = 100
+    private val TIME:Long = 1000
 
-    private lateinit var binding:ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,9 +31,17 @@ class SplashActivity : AppCompatActivity() {
                 .repeat(0)
                 .playOn(findViewById(R.id.ic_splash))
         Handler().postDelayed({
-            goToLogin()
+            if(isUserLoggerId()){
+                goToHome()
+            }else{
+                goToLogin()
+            }
+
         }, TIME * 2)
     }
+
+    private fun isUserLoggerId(): Boolean = HawkManager().getUserLoggedIn().innerId != "0"
+
     private fun goToLogin(){
         val intent =
             Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -45,13 +50,11 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
     private fun goToHome(){
+        val intent =
+            Intent(this, HomeActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        goToActivityAnimation()
+        finish()
+    }
 
-    }
-    fun main() {
-        val students = arrayOf("Abel", "Bill", "Cindy", "Darla")
-        printStudents(*students)
-    }
-    fun printStudents(vararg students: String) {
-        for (student in students) println(student)
-    }
 }

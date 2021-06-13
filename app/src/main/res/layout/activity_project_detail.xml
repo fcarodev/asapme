@@ -5,110 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.view.projectdetail.ProjectDetailActivity">
+    tools:context=".ui.view.projectdetail.SprintActivity">
 
-    <RelativeLayout
-        android:id="@+id/relative"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="0dp"
+        android:elevation="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="-16dp"
-            android:layout_marginEnd="0dp"
-            android:paddingTop="16dp"
-            android:backgroundTint="@color/colorPrimary"
-            app:cardCornerRadius="16dp">
+            android:layout_height="match_parent"
+           >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBackDetailProject"
+                style="@style/normalMaterialButtonArrow"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTitleDetailProject"
+                style="@style/textTitleActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detalles projecto"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnBackDetailProject"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnBackDetailProject" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/imgEditProjectStyle"
+                style="@style/materialCircleButtonEdit"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtTitleDetailProject"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtTitleDetailProject" />
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnBackDetailProject"
-                    style="@style/normalMaterialButtonArrow"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtTitleDetailProject"
-                    style="@style/textTitleActivity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Detalles projecto"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/btnBackDetailProject"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/btnBackDetailProject" />
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/imgEditProjectStyle"
-                    style="@style/materialCircleButtonEdit"
-                    app:layout_constraintBottom_toTopOf="@+id/progressBarProjectDetail"
-                    app:layout_constraintEnd_toEndOf="@+id/progressBarProjectDetail"
-                    app:layout_constraintStart_toStartOf="@+id/progressBarProjectDetail"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imgProjectDetail"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/round_corner_shape"
-                    android:src="@drawable/ic_placeholder"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnBackDetailProject" />
+                android:padding="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnBackDetailProject">
 
                 <LinearLayout
                     android:id="@+id/linearLayoutTextProjectDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgProjectDetail"
-                    app:layout_constraintEnd_toStartOf="@+id/progressBarProjectDetail"
-                    app:layout_constraintHorizontal_bias="0.19"
-                    app:layout_constraintStart_toEndOf="@+id/imgProjectDetail"
-                    app:layout_constraintTop_toTopOf="@+id/imgProjectDetail">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/txtNameProjectDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/textTitleActivity"
                         android:text="Coverme"
                         app:layout_constraintTop_toTopOf="@+id/imgProjectDetail" />
 
                     <TextView
                         android:id="@+id/txtDescProjectDetail"
                         android:layout_width="wrap_content"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:text="Proyecto movil ios/android" />
 
                     <TextView
                         android:id="@+id/txtSprintProjectDetail"
                         android:layout_width="wrap_content"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         android:text="Sprint: Coverme tablet" />
                 </LinearLayout>
-
                 <ProgressBar
                     android:id="@+id/progressBarProjectDetail"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:progress="50"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:indeterminateOnly="false"
+                    android:progress="50"
                     android:progressDrawable="@drawable/progress_circle"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayoutTextProjectDetail"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -126,18 +117,38 @@
                     app:layout_constraintTop_toTopOf="@+id/progressBarProjectDetail" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
-    </RelativeLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtTitleSprint"
+        style="@style/textTitleActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/colorPrimary"
+        android:text="Sprints"
+        android:visibility="invisible"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDetailProject"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relative" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitleSprint" />
 
-
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addSprint"
+        style="@style/materialCircleButtonEdit"
+        app:icon="@drawable/ic_baseline_add"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTitleSprint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtTitleSprint" />
 </androidx.constraintlayout.widget.ConstraintLayout>
