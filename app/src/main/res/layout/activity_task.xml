@@ -10,35 +10,83 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewTask"
-        android:background="@color/white"
+        app:cardCornerRadius="0dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBackDetailProject"
-        style="@style/normalMaterialButtonArrow"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtTitleDetailProject"
-        style="@style/textTitleActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tareas sprint"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBackDetailProject"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnBackDetailProject" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBackDetailTask"
+                style="@style/normalMaterialButtonArrow"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTitleDetailProject"
+                style="@style/textTitleActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tareas sprint"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnBackDetailTask"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnBackDetailTask" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addTask"
+                style="@style/materialCircleButtonEdit"
+                app:icon="@drawable/ic_baseline_add"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtTitleDetailProject"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtTitleDetailProject" />
+
+            <TextView
+                android:id="@+id/txtSprintNameTask"
+                style="@style/textTitleActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginTop="32dp"
+                android:text="Sprint hola"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnBackDetailTask" />
+
+            <ProgressBar
+                android:id="@+id/progressSprint"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:indeterminateOnly="false"
+                android:progress="00"
+                android:layout_marginRight="16dp"
+                android:progressDrawable="@drawable/progress_circle"
+                app:layout_constraintBottom_toBottomOf="@+id/txtSprintNameTask"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtSprintNameTask" />
+
+            <TextView
+                android:id="@+id/txtSprintPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressSprint"
+                app:layout_constraintEnd_toEndOf="@+id/progressSprint"
+                app:layout_constraintStart_toStartOf="@+id/progressSprint"
+                app:layout_constraintTop_toTopOf="@+id/progressSprint" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -48,17 +96,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewTask" />
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTask"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_row_task" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAddTask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        app:backgroundTint="@color/colorTextEditText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

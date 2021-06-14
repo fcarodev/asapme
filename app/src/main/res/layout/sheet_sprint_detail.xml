@@ -26,13 +26,6 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 
-           <com.google.android.material.button.MaterialButton
-               android:id="@+id/btEditSprint"
-               style="@style/materialCircleButtonEdit"
-               android:layout_marginStart="16dp"
-               app:layout_constraintBottom_toBottomOf="@+id/textView"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="@+id/textView" />
 
            <TextView
                android:id="@+id/textView"
@@ -150,18 +143,18 @@
                app:layout_constraintTop_toBottomOf="@+id/btnStartSprint" />
 
            <com.google.android.material.button.MaterialButton
-               android:id="@+id/btnAddTast"
+               android:id="@+id/btEditSprint"
                style="@style/textLink"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:gravity="left"
-               android:text="Agregar tarea"
+               android:text="Editar sprint"
                android:textSize="17sp"
                app:icon="@drawable/ic_rigth_arrow"
                app:iconGravity="end"
                app:iconTint="@color/colorPrimary"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/line1" />
+               app:layout_constraintTop_toBottomOf="@+id/line2" />
 
            <View
                android:id="@+id/line2"
@@ -171,7 +164,28 @@
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@+id/btnAddTast" />
+           <com.google.android.material.button.MaterialButton
+               android:id="@+id/btnAddTast"
+               style="@style/textLink"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="left"
+               android:text="Ver tareas"
+               android:textSize="17sp"
+               app:icon="@drawable/ic_rigth_arrow"
+               app:iconGravity="end"
+               app:iconTint="@color/colorPrimary"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/line1" />
 
+           <View
+               android:id="@+id/line3"
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="#d8d8d8"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/btEditSprint" />
            <com.google.android.material.button.MaterialButton
                android:id="@+id/btnDeleteSprint"
                style="@style/textLink"
@@ -185,7 +199,7 @@
                app:iconGravity="end"
                app:iconTint="#ff1744"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/line2" />
+               app:layout_constraintTop_toBottomOf="@+id/line3" />
        </androidx.constraintlayout.widget.ConstraintLayout>
    </com.google.android.material.card.MaterialCardView>
 

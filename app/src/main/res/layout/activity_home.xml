@@ -69,7 +69,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerHome"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_row_home"
+
+                />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

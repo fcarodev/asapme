@@ -8,14 +8,29 @@ import com.portfolio.myapp.data.model.sprint.SprintProvider
 import com.portfolio.myapp.data.model.task.TaskModel
 import com.portfolio.myapp.data.model.task.TaskProvider
 
-class TaskViewModel:ViewModel() {
+class TaskViewModel : ViewModel() {
 
     val repo = TaskProvider()
 
     fun getTasks(idSprint: String): LiveData<MutableList<TaskModel>> {
         val mutableData = MutableLiveData<MutableList<TaskModel>>()
-        repo.getTasksBySprint(idSprint).observeForever{ listTasks ->
+        repo.getTasksBySprint(idSprint).observeForever { listTasks ->
             mutableData.value = listTasks
+        }
+        return mutableData
+    }
+
+    fun createTask(taskModel: TaskModel): LiveData<TaskModel> {
+        val mutableData = MutableLiveData<TaskModel>()
+        repo.addTask(taskModel).observeForever { taskResult ->
+            mutableData.value = taskResult
+        }
+        return mutableData
+    }
+    fun updateTask(taskModel: TaskModel): LiveData<TaskModel>{
+        val mutableData = MutableLiveData<TaskModel>()
+        repo.updateTask(taskModel).observeForever { taskResult ->
+            mutableData.value = taskResult
         }
         return mutableData
     }

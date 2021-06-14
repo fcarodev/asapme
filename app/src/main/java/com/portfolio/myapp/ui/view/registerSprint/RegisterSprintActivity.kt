@@ -2,7 +2,6 @@ package com.portfolio.myapp.ui.view.registerSprint
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -21,16 +20,19 @@ import com.portfolio.myapp.viewmodel.SprintViewModel
 import kotlinx.android.synthetic.main.activity_register_sprint.*
 
 
-
 class RegisterSprintActivity : AppCompatActivity() {
     private val viewModel by lazy { ViewModelProviders.of(this).get(SprintViewModel::class.java) }
     var sprint = SprintModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_sprint)
-        Logger.i("Actual sprint " + Gson().toJson(HawkManager().getActualSprint()))
-        sprint = HawkManager().getActualSprint()
-        if(sprint.innerId == "-1"){ newSprint() } else{ updateSprintView() }
+        Logger.i("Actual sprint " + Gson().toJson(HawkManager().getCurrentSprint()))
+        sprint = HawkManager().getCurrentSprint()
+        if (sprint.innerId == "-1") {
+            newSprint()
+        } else {
+            updateSprintView()
+        }
         startAnimation()
 
         btnBackAddSprint.setOnClickListener { goToDetailProject() }
@@ -45,7 +47,7 @@ class RegisterSprintActivity : AppCompatActivity() {
                 .displayMonth(true)
                 .displayYears(true)
                 .displayDaysOfMonth(true)
-                .listener { dateInit->
+                .listener { dateInit ->
                     dateInitSprint.setText(dateInit.toSimpleString())
                     Logger.i(dateInit.toSimpleString())
                 }
@@ -63,7 +65,7 @@ class RegisterSprintActivity : AppCompatActivity() {
                 .displayMonth(true)
                 .displayYears(true)
                 .displayDaysOfMonth(true)
-                .listener { dateInit->
+                .listener { dateInit ->
                     dateFinishSprint.setText(dateInit.toSimpleString())
                     Logger.i(dateInit.toSimpleString())
                 }
@@ -71,9 +73,9 @@ class RegisterSprintActivity : AppCompatActivity() {
         }
 
         btnRegisterSprint.setOnClickListener {
-            if(sprint.innerId == "-1"){
+            if (sprint.innerId == "-1") {
                 registerSprint()
-            }else{
+            } else {
                 updateSprint()
             }
 
@@ -82,9 +84,20 @@ class RegisterSprintActivity : AppCompatActivity() {
     }
 
     private fun updateSprint() {
-
+        val sprintModel = sprint
+        sprintModel.name = nameSprint.text.toString()
+        sprintModel.description = descSprint.text.toString()
+        sprintModel.dateInit = dateInitSprint.text.toString()
+        sprintModel.dateFinish = dateFinishSprint.text.toString()
+        viewModel.updateSprint(sprintModel).observe(this, Observer { sprintResult ->
+            if (sprint.innerId != "-1") {
+                Logger.i(Gson().toJson(sprint))
+                goToDetailProject()
+            } else {
+                Logger.i("Sprint update error")
+            }
+        })
     }
-
 
 
     private fun updateSprintView() {
@@ -106,18 +119,19 @@ class RegisterSprintActivity : AppCompatActivity() {
         sprint.isActive = true
         sprint.dateInit = dateInitSprint.text.toString()
         sprint.dateFinish = dateFinishSprint.text.toString()
-        sprint.name= nameSprint.text.toString()
+        sprint.name = nameSprint.text.toString()
         sprint.idProject = HawkManager().getCurrentProject().innerId.toString()
         sprint.description = descSprint.text.toString()
 
         viewModel.addSprint(sprint).observe(this, Observer { sprint ->
-            if (sprint != null){
+            if (sprint != null) {
                 Logger.i(Gson().toJson(sprint))
                 goToDetailProject()
             }
 
         })
     }
+
     private fun goToDetailProject() {
         val intent =
             Intent(this, SprintActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -125,6 +139,7 @@ class RegisterSprintActivity : AppCompatActivity() {
         backFromActivityAnimation()
         finish()
     }
+
     private fun startAnimation() {
         ViewAnimator
             .animate(btnBackAddSprint)

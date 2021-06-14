@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.project.ProjectModel
 import com.portfolio.myapp.data.model.sprint.SprintModel
-import com.portfolio.myapp.data.model.user.UserModel
-import com.portfolio.myapp.ui.view.home.BottomSheetProfile
 import com.portfolio.myapp.ui.view.home.HomeActivity
 import com.portfolio.myapp.ui.view.registerSprint.RegisterSprintActivity
 import com.portfolio.myapp.ui.view.task.TaskActivity
@@ -56,7 +54,7 @@ class SprintActivity : AppCompatActivity(),SprintAdapter.SprintClickListener,Bot
         getSprints(HawkManager().getCurrentProject().innerId.toString())
 
         addSprint.setOnClickListener {
-            HawkManager().setActualSprint(SprintModel("-1"))
+            HawkManager().setCurrentSprint(SprintModel("-1"))
             goToCreateSprint() }
     }
 
@@ -130,12 +128,12 @@ class SprintActivity : AppCompatActivity(),SprintAdapter.SprintClickListener,Bot
     }
 
     override fun onSprintClickListener(sprintModel: SprintModel) {
-        HawkManager().setActualSprint(sprintModel)
+        HawkManager().setCurrentSprint(sprintModel)
         bottomSheetDetailSprint.show(this.supportFragmentManager, "bottomSheetDetailSprint")
     }
 
     override fun onCreateSprintClickListener() {
-        HawkManager().setActualSprint(SprintModel("-1"))
+        HawkManager().setCurrentSprint(SprintModel("-1"))
         goToCreateSprint()
     }
 
@@ -162,17 +160,20 @@ class SprintActivity : AppCompatActivity(),SprintAdapter.SprintClickListener,Bot
     }
 
     override fun onDeleteSprintClickListener(nameSprint: String) {
+        bottomSheetDetailSprint.dismiss()
     }
 
     override fun onStartSprintClickListeenr(sprintModel: SprintModel) {
+        bottomSheetDetailSprint.dismiss()
     }
 
     override fun onAddTaskClickListener(sprintModel: SprintModel) {
+        bottomSheetDetailSprint.dismiss()
         goToTasks()
     }
 
     override fun onEditSprintClickListener(sprintModel: SprintModel) {
-        HawkManager().setActualSprint(sprintModel)
+        HawkManager().setCurrentSprint(sprintModel)
         bottomSheetDetailSprint.dismiss()
         goToCreateSprint()
     }

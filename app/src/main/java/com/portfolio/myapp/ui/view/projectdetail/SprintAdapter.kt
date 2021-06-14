@@ -81,10 +81,10 @@ class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Ad
     inner class SprintViewHolderData(itemView:View):SprintViewHolder<SprintModel>(itemView) {
         override fun bindView(sprintModel: SprintModel, itemClickListener: SprintAdapter.SprintClickListener) {
             itemView.txtSprintName.text = sprintModel.name
-            itemView.txtSprintPercent.text = "44%"
-            itemView.progressSprint.progress = 44
-            itemView.txtInitDateSprint.text = sprintModel.dateInit
-            itemView.txtFinishDateSprint.text = sprintModel.dateFinish
+            itemView.txtSprintPercent.text = "0%"
+            itemView.progressSprint.progress = 0
+            itemView.txtInitDateSprint.text = "Inicio: ${sprintModel.dateInit}"
+            itemView.txtFinishDateSprint.text = "Termino: ${sprintModel.dateFinish}"
             itemView.cardDetailProject.setOnClickListener{
                 sprintClickListener.onSprintClickListener(sprintModel)
             }

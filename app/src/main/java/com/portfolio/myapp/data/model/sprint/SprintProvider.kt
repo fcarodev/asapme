@@ -38,7 +38,21 @@ class SprintProvider {
             }
         return mutableData
     }
-
+     fun updateSprint(sprint: SprintModel): LiveData<SprintModel> {
+         val mutableData = MutableLiveData<SprintModel>()
+        db.collection("sprint")
+            .document(sprint.innerId!!)
+            .set(sprint)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    mutableData.value = sprint
+                    Logger.i("Sprint document Success update")
+                } else {
+                    Logger.i("Sprint document Fail update")
+                }
+            }
+         return mutableData
+    }
     private fun updateSprint2(sprint: SprintModel){
         db.collection("sprint")
             .document(sprint.innerId!!)
