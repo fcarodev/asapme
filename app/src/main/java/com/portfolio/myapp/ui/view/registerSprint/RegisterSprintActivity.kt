@@ -1,7 +1,9 @@
 package com.portfolio.myapp.ui.view.registerSprint
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -26,6 +28,8 @@ class RegisterSprintActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_sprint)
+        window.statusBarColor = Color.parseColor("#ffffff")
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         Logger.i("Actual sprint " + Gson().toJson(HawkManager().getCurrentSprint()))
         sprint = HawkManager().getCurrentSprint()
         if (sprint.innerId == "-1") {
@@ -116,19 +120,19 @@ class RegisterSprintActivity : AppCompatActivity() {
 
     private fun registerSprint() {
         val sprint = SprintModel()
-        sprint.isActive = true
+        sprint.isActive = false
         sprint.dateInit = dateInitSprint.text.toString()
         sprint.dateFinish = dateFinishSprint.text.toString()
         sprint.name = nameSprint.text.toString()
         sprint.idProject = HawkManager().getCurrentProject().innerId.toString()
         sprint.description = descSprint.text.toString()
+        sprint.actualProgress = "0"
 
         viewModel.addSprint(sprint).observe(this, Observer { sprint ->
             if (sprint != null) {
                 Logger.i(Gson().toJson(sprint))
                 goToDetailProject()
             }
-
         })
     }
 

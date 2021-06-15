@@ -1,9 +1,9 @@
 package com.portfolio.myapp.ui.view.register
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.UserManager
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -15,21 +15,19 @@ import com.portfolio.myapp.ui.view.home.HomeActivity
 import com.portfolio.myapp.ui.view.login.LoginActivity
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
-import com.portfolio.myapp.viewmodel.LoginViewModel
-import com.portfolio.myapp.viewmodel.RegisterViewModel
-import kotlinx.android.synthetic.main.activity_change_password.*
+import com.portfolio.myapp.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.activity_register.textView6
-import kotlinx.android.synthetic.main.activity_register.view.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { ViewModelProviders.of(this).get(RegisterViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProviders.of(this).get(UserViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-
+        window.statusBarColor = Color.parseColor("#ffffff")
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         btnBackRegister.setOnClickListener { goToLogin() }
         btnRegister.setOnClickListener { registerUser() }
 

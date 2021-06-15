@@ -72,20 +72,14 @@
             <TextView
                 android:id="@+id/txtDesctTask"
                 style="@style/textTitleActivity"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="left"
                 android:text="Descripcion"
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtLabelDesctSprint" />
-
-
-
-
-
-
-
-
             <View
                 android:id="@+id/line2"
                 android:layout_width="match_parent"

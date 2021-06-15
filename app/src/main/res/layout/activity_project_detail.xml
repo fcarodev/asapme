@@ -99,7 +99,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:indeterminateOnly="false"
-                    android:progress="50"
+                    android:progress="0"
                     android:progressDrawable="@drawable/progress_circle"
                     app:layout_constraintBottom_toBottomOf="@+id/linearLayoutTextProjectDetail"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -122,18 +122,41 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/txtTitleSprint"
-        style="@style/textTitleActivity"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutSprint"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:textColor="@color/colorPrimary"
-        android:text="Sprints"
-        android:visibility="invisible"
         android:padding="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+
+        <TextView
+            android:id="@+id/txtTitleSprint"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Sprints"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addSprint"
+            style="@style/materialCircleButtonEdit"
+            app:icon="@drawable/ic_baseline_add"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTitleSprint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtTitleSprint" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addSortSprint"
+            style="@style/materialCircleButtonEdit"
+            app:icon="@drawable/ic_filter_list"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTitleSprint"
+            app:layout_constraintEnd_toStartOf="@+id/addSprint"
+            app:layout_constraintTop_toTopOf="@+id/txtTitleSprint" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDetailProject"
         android:layout_width="match_parent"
@@ -141,15 +164,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_row_sprint"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitleSprint" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSprint"
+        tools:listitem="@layout/item_row_sprint" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addSprint"
-        style="@style/materialCircleButtonEdit"
-        app:icon="@drawable/ic_baseline_add"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtTitleSprint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtTitleSprint" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

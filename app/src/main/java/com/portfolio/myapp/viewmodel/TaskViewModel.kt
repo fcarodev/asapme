@@ -34,4 +34,11 @@ class TaskViewModel : ViewModel() {
         }
         return mutableData
     }
+    fun deleteTask(taskModel: TaskModel): LiveData<TaskModel>{
+        val mutableData = MutableLiveData<TaskModel>()
+        repo.deleteTask(taskModel).observeForever { taskResult ->
+            mutableData.value = taskResult
+        }
+        return mutableData
+    }
 }

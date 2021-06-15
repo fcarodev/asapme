@@ -1,8 +1,10 @@
 package com.portfolio.myapp.ui.view.updateUser
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.github.florent37.viewanimator.ViewAnimator
 import com.portfolio.myapp.R
 import com.portfolio.myapp.ui.view.home.HomeActivity
@@ -15,7 +17,8 @@ class ChangePasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
-
+        window.statusBarColor = Color.parseColor("#ffffff")
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         btnBackUpdatePass.setOnClickListener {
             goToHome()
         }

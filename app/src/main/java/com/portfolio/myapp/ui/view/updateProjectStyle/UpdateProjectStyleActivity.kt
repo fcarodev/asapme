@@ -26,13 +26,13 @@ import com.portfolio.myapp.data.model.project.ProjectModel
 import com.portfolio.myapp.ui.view.projectdetail.SprintActivity
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
-import com.portfolio.myapp.viewmodel.StyleProjectViewModel
+import com.portfolio.myapp.viewmodel.ProjectViewModel
 import kotlinx.android.synthetic.main.activity_update_project_style.*
 
 
 class UpdateProjectStyleActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { ViewModelProviders.of(this).get(StyleProjectViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProviders.of(this).get(ProjectViewModel::class.java) }
 
     private val colorfulViews = hashSetOf<View>()
     private val pickerGroup =
@@ -43,6 +43,7 @@ class UpdateProjectStyleActivity : AppCompatActivity() {
     var colorText = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_update_project_style)
         btnBackStyleProject.setOnClickListener { goToDetailsProject() }
         val project = HawkManager().getCurrentProject()
@@ -78,6 +79,8 @@ class UpdateProjectStyleActivity : AppCompatActivity() {
                 ) {
                     //colorHex = color.toHex()
                     colorize(color)
+                    window.statusBarColor = Color.parseColor(color.toHex())
+
                 }
             }
         )

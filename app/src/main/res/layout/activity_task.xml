@@ -20,7 +20,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBackDetailTask"
@@ -42,14 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btnBackDetailTask" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/addTask"
-                style="@style/materialCircleButtonEdit"
-                app:icon="@drawable/ic_baseline_add"
-                android:layout_marginRight="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/txtTitleDetailProject"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txtTitleDetailProject" />
+
 
             <TextView
                 android:id="@+id/txtSprintNameTask"
@@ -64,11 +58,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnBackDetailTask" />
 
             <ProgressBar
-                android:id="@+id/progressSprint"
+                android:id="@+id/progressSprintTask"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:indeterminateOnly="false"
-                android:progress="00"
+                android:progress="0"
                 android:layout_marginRight="16dp"
                 android:progressDrawable="@drawable/progress_circle"
                 app:layout_constraintBottom_toBottomOf="@+id/txtSprintNameTask"
@@ -82,13 +76,52 @@
                 android:text="0%"
                 android:textColor="@color/colorPrimary"
                 android:textSize="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/progressSprint"
-                app:layout_constraintEnd_toEndOf="@+id/progressSprint"
-                app:layout_constraintStart_toStartOf="@+id/progressSprint"
-                app:layout_constraintTop_toTopOf="@+id/progressSprint" />
+                app:layout_constraintBottom_toBottomOf="@+id/progressSprintTask"
+                app:layout_constraintEnd_toEndOf="@+id/progressSprintTask"
+                app:layout_constraintStart_toStartOf="@+id/progressSprintTask"
+                app:layout_constraintTop_toTopOf="@+id/progressSprintTask" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constListTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTask">
+
+        <TextView
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/textView2"
+            style="@style/textTitleActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lista de Tarea"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addTask"
+            style="@style/materialCircleButtonEdit"
+            app:icon="@drawable/ic_baseline_add"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addSortTask"
+            style="@style/materialCircleButtonEdit"
+            app:icon="@drawable/ic_filter_list"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toStartOf="@+id/addTask"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTask"
@@ -96,10 +129,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewTask"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/constListTask"
         tools:listitem="@layout/item_row_task" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

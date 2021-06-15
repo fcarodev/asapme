@@ -47,6 +47,14 @@
                 app:layout_constraintBottom_toBottomOf="@+id/imgUser"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imgUser" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addSortProject"
+                style="@style/materialCircleButtonEdit"
+                app:icon="@drawable/ic_filter_list"
+                app:layout_constraintBottom_toBottomOf="@+id/imgUser"
+                app:layout_constraintEnd_toStartOf="@+id/addProject"
+                app:layout_constraintTop_toTopOf="@+id/imgUser" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

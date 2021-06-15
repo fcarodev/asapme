@@ -1,8 +1,10 @@
 package com.portfolio.myapp.ui.view.registerProject
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.github.florent37.viewanimator.ViewAnimator
@@ -15,18 +17,20 @@ import com.portfolio.myapp.ui.view.projectdetail.SprintActivity
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
-import com.portfolio.myapp.viewmodel.CreateProjectViewModel
+import com.portfolio.myapp.viewmodel.ProjectViewModel
 import kotlinx.android.synthetic.main.activity_register_project.*
 import kotlinx.android.synthetic.main.activity_register_project.textView6
 
 class RegisterProjectActivity : AppCompatActivity() {
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(CreateProjectViewModel::class.java)
+        ViewModelProviders.of(this).get(ProjectViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_project)
+        window.statusBarColor = Color.parseColor("#ffffff")
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         btnBackAddProject.setOnClickListener { goToHome() }
         btnRegisterProject.setOnClickListener { createEmptyProject() }
 

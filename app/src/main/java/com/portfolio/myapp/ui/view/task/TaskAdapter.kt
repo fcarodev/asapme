@@ -1,43 +1,41 @@
 package com.portfolio.myapp.ui.view.task
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.florent37.viewanimator.ViewAnimator
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.task.TaskModel
-import kotlinx.android.synthetic.main.activity_register_task.view.*
-import kotlinx.android.synthetic.main.item_row_empty_data_home.view.*
 import kotlinx.android.synthetic.main.item_row_empty_data_task.view.*
 import kotlinx.android.synthetic.main.item_row_task.view.*
 
-class TaskAdapter(val itemClickListener:TaskClickListener) :RecyclerView.Adapter<TaskViewHolder<*>>() {
+
+class TaskAdapter(val itemClickListener: TaskClickListener) :RecyclerView.Adapter<TaskViewHolder<*>>() {
 
     private var taskList = mutableListOf<TaskModel>() //retorna un ArrayList
 
-    fun setListProject(taskList:MutableList<TaskModel>){
+    fun setListTask(taskList: MutableList<TaskModel>){
         this.taskList = taskList
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder<*> {
         return when (viewType) {
             0 -> {
-                //Se muestra cuando no hay projectos ([])
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_row_empty_data_task, parent, false)
                 TaskViewEmptyData(view)
             }
             1 -> {
-                //Se muestra cuando no se sabe si hay o no projectos (null)
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_row_placeholder_task, parent, false)
                 TaskViewPlaceholder(view)
 
             }
-
             2 -> {
-                //Se muestra cuando hay project ([data1,data2,data3])
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_row_task, parent, false)
                 TaskViewHolderData(view)
@@ -57,9 +55,18 @@ class TaskAdapter(val itemClickListener:TaskClickListener) :RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: TaskViewHolder<*>, position: Int) {
         when (holder) {
-            is TaskAdapter.TaskViewEmptyData -> holder.bindView(TaskModel("EmptyDataTask"), itemClickListener)
-            is TaskAdapter.TaskViewPlaceholder -> holder.bindView(TaskModel("PlaceholderDataTask"), itemClickListener)
-            is TaskAdapter.TaskViewHolderData -> holder.bindView(taskList[position], itemClickListener)
+            is TaskAdapter.TaskViewEmptyData -> holder.bindView(
+                TaskModel("EmptyDataTask"),
+                itemClickListener
+            )
+            is TaskAdapter.TaskViewPlaceholder -> holder.bindView(
+                TaskModel("PlaceholderDataTask"),
+                itemClickListener
+            )
+            is TaskAdapter.TaskViewHolderData -> holder.bindView(
+                taskList[position],
+                itemClickListener
+            )
         }
     }
 
@@ -100,8 +107,20 @@ class TaskAdapter(val itemClickListener:TaskClickListener) :RecyclerView.Adapter
     }
     inner class TaskViewHolderData(itemView: View): TaskViewHolder<TaskModel>(itemView) {
         override fun bindView(item: TaskModel, itemClickListener: TaskClickListener) {
+
             itemView.txtNameTask.setText(item.name)
             itemView.chkTask.isChecked = item.status
+            if(item.status){
+                itemView.chkTask.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFF")))
+                itemView.cardTask.getBackground()
+                    .setTint(Color.parseColor("#303F9F"))
+                itemView.txtNameTask.setTextColor(Color.parseColor("#FFFFFF"))
+            }else{
+                itemView.chkTask.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#303F9F")))
+                itemView.cardTask.getBackground()
+                    .setTint(Color.parseColor("#f2f2f7"))
+                itemView.txtNameTask.setTextColor(Color.parseColor("#303F9F"))
+            }
             itemView.chkTask.setOnClickListener{
                 item.status = itemView.chkTask.isChecked
                 itemClickListener.onEditStatusClickListener(item)

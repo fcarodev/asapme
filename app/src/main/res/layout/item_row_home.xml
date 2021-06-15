@@ -10,6 +10,7 @@
     android:clickable="true"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
+    android:layout_marginBottom="8dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
     android:layout_marginTop="8dp"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/imgProjectHome"
-            app:layout_constraintEnd_toStartOf="@+id/progressBarProjectHome"
+            app:layout_constraintEnd_toStartOf="@+id/progressBarProjectHomeInit"
             app:layout_constraintHorizontal_bias="0.19"
             app:layout_constraintStart_toEndOf="@+id/imgProjectHome"
             app:layout_constraintTop_toTopOf="@+id/imgProjectHome">
@@ -63,10 +64,11 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/progressBarProjectHome"
+            android:id="@+id/progressBarProjectHomeInit"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:progress="50"
+            android:progress="0"
+            android:visibility="invisible"
             android:indeterminateOnly="false"
             android:progressDrawable="@drawable/progress_circle"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayoutTextProjectHome"
@@ -74,14 +76,14 @@
             app:layout_constraintTop_toTopOf="@+id/linearLayoutTextProjectHome" />
 
         <TextView
+            style="@style/textTitleActivity"
             android:id="@+id/txtPercentHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="50%"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/progressBarProjectHome"
-            app:layout_constraintEnd_toEndOf="@+id/progressBarProjectHome"
-            app:layout_constraintStart_toStartOf="@+id/progressBarProjectHome"
-            app:layout_constraintTop_toTopOf="@+id/progressBarProjectHome" />
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayoutTextProjectHome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/progressBarProjectHomeInit"
+            app:layout_constraintTop_toTopOf="@+id/linearLayoutTextProjectHome" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -1,16 +1,22 @@
 package com.portfolio.myapp.ui.view.projectdetail
 
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.florent37.viewanimator.ViewAnimator
+import com.google.gson.Gson
+import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.sprint.SprintModel
 import kotlinx.android.synthetic.main.item_row_empty_data_sprint.view.*
 import kotlinx.android.synthetic.main.item_row_sprint.view.*
+import kotlinx.android.synthetic.main.item_row_task.view.*
 
 
 class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Adapter<SprintViewHolder<*>>() {
@@ -81,8 +87,30 @@ class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Ad
     inner class SprintViewHolderData(itemView:View):SprintViewHolder<SprintModel>(itemView) {
         override fun bindView(sprintModel: SprintModel, itemClickListener: SprintAdapter.SprintClickListener) {
             itemView.txtSprintName.text = sprintModel.name
-            itemView.txtSprintPercent.text = "0%"
-            itemView.progressSprint.progress = 0
+            Logger.i("SprintViewHolderData: " + Gson().toJson(sprintModel))
+            val progressBarProject :ProgressBar = itemView.findViewById(R.id.progressSprint)
+            itemView.txtSprintPercent.text = "${sprintModel.actualProgress}%"
+
+            if(sprintModel.isActive){
+                itemView.cardSprint.getBackground().setTint(Color.parseColor("#303F9F"))
+                itemView.txtSprintPercent.setTextColor(Color.parseColor("#FFFFFF"))
+                itemView.txtFinishDateSprint.setTextColor(Color.parseColor("#FFFFFF"))
+                itemView.txtInitDateSprint.setTextColor(Color.parseColor("#FFFFFF"))
+                itemView.txtSprintName.setTextColor(Color.parseColor("#FFFFFF"))
+            }else{
+                itemView.cardSprint.getBackground().setTint(Color.parseColor("#FFFFFF"))
+                itemView.txtSprintPercent.setTextColor(Color.parseColor("#303F9F"))
+                itemView.txtFinishDateSprint.setTextColor(Color.parseColor("#303F9F"))
+                itemView.txtInitDateSprint.setTextColor(Color.parseColor("#303F9F"))
+                itemView.txtSprintName.setTextColor(Color.parseColor("#303F9F"))
+            }
+            if(sprintModel.actualProgress == "0"){
+                progressBarProject.progress = 0
+            }else{
+                progressBarProject.progress =   itemView.txtSprintPercent.text.toString().replace("%","").toInt()
+
+            }
+
             itemView.txtInitDateSprint.text = "Inicio: ${sprintModel.dateInit}"
             itemView.txtFinishDateSprint.text = "Termino: ${sprintModel.dateFinish}"
             itemView.cardDetailProject.setOnClickListener{

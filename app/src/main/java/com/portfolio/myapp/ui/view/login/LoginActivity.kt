@@ -1,11 +1,12 @@
 package com.portfolio.myapp.ui.view.login
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.ViewAnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat.animate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
@@ -14,17 +15,20 @@ import com.portfolio.myapp.R
 import com.portfolio.myapp.ui.view.home.HomeActivity
 import com.portfolio.myapp.ui.view.register.RegisterActivity
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
-import com.portfolio.myapp.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import com.github.florent37.viewanimator.ViewAnimator
+import com.portfolio.myapp.viewmodel.UserViewModel
 
 class LoginActivity : AppCompatActivity() {
     lateinit var btnLogin: MaterialButton
     lateinit var txtAddUser: TextView
-    private val viewModel by lazy { ViewModelProviders.of(this).get(LoginViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProviders.of(this).get(UserViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        window.statusBarColor = Color.parseColor("#ffffff")
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         btnLogin = findViewById(R.id.btnLogin)
         txtAddUser = findViewById(R.id.txtAddUser)
 

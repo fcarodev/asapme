@@ -53,12 +53,27 @@ class ProjectProvider {
 
     }
 
+    fun updateProgressProject(projectModel: ProjectModel):LiveData<ProjectModel> {
+        val mutableData = MutableLiveData<ProjectModel>()
+        db.collection("project")
+            .document(projectModel.innerId!!)
+            .set(projectModel)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    mutableData.value = projectModel
+                    Logger.i("Project progress Success update")
+                } else {
+                    Logger.i("Project progress Fail update")
+                }
+            }
+        return mutableData
+    }
 
-    fun getProjectOfUser(idUser: String):LiveData<MutableList<ProjectModel>>  {
+    fun getProjectOfUser(idUser: String): LiveData<MutableList<ProjectModel>> {
 
         val mutableData = MutableLiveData<MutableList<ProjectModel>>()
         db.collection("project")
-            .whereEqualTo("userId",idUser)
+            .whereEqualTo("userId", idUser)
             .get()
             .addOnSuccessListener { resultProject ->
                 val listData = mutableListOf<ProjectModel>()
@@ -91,27 +106,24 @@ class ProjectProvider {
         return mutableData
     }
 
-    fun updateProject(projectModel: ProjectModel):LiveData<ProjectModel>{
-        val updates = hashMapOf<String, Any>(
-            "colorBackground" to projectModel.colorBackground,
-            "colorText" to projectModel.colorText,
-            "imgUrl" to projectModel.imgUrl
-        )
+    fun updateProject(projectModel: ProjectModel): LiveData<ProjectModel> {
+        Logger.i("projectModel ${Gson().toJson(projectModel)}")
         val mutableData = MutableLiveData<ProjectModel>()
-        db.collection("project").document(projectModel.innerId!!).
-        update(updates)
+        db.collection("project")
+            .document(projectModel.innerId!!)
+            .set(projectModel)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Logger.i("Success update")
+                    Logger.i("Success update project")
                     mutableData.value = projectModel
                 } else {
-                    Logger.i("Fail update")
+                    Logger.i("Fail update project")
                 }
             }
         return mutableData
     }
 
-    fun createProject(projectModel: ProjectModel):LiveData<ProjectModel> {
+    fun createProject(projectModel: ProjectModel): LiveData<ProjectModel> {
         val mutableData = MutableLiveData<ProjectModel>()
         db.collection("project")
             .add(projectModel).addOnSuccessListener {
@@ -128,8 +140,7 @@ class ProjectProvider {
     }
 
 
-
-    private fun updateProject2(projectModel: ProjectModel){
+    private fun updateProject2(projectModel: ProjectModel) {
         db.collection("project")
             .document(projectModel.innerId!!)
             .update("innerId", projectModel.innerId)

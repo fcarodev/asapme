@@ -31,12 +31,12 @@ class BottomSheetSprint( var itemClickListener: SprintClickListener) : BottomShe
 
             view.btnStartSprint.setOnClickListener { itemClickListener.onStartSprintClickListeenr(sprintModel) }
             view.btnAddTast.setOnClickListener { itemClickListener.onAddTaskClickListener(sprintModel) }
-            view.btnDeleteSprint.setOnClickListener { itemClickListener.onDeleteSprintClickListener(sprintModel.innerId) }
+            view.btnDeleteSprint.setOnClickListener { itemClickListener.onDeleteSprintClickListener(sprintModel) }
             view.btEditSprint.setOnClickListener { itemClickListener.onEditSprintClickListener(sprintModel) }
         }
 
         interface SprintClickListener {
-            fun onDeleteSprintClickListener(idSprint:String)
+            fun onDeleteSprintClickListener(idSprint:SprintModel)
             fun onStartSprintClickListeenr(sprintModel: SprintModel)
             fun onAddTaskClickListener(sprintModel: SprintModel)
             fun onEditSprintClickListener(sprintModel: SprintModel)

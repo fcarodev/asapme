@@ -1,8 +1,10 @@
 package com.portfolio.myapp.ui.view.registerTask
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.github.florent37.viewanimator.ViewAnimator
@@ -21,6 +23,8 @@ class RegisterTaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_task)
+        window.statusBarColor = Color.parseColor("#ffffff")
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         taskModel = HawkManager().getCurrentTask()
         if(taskModel.innerId == "-1"){
             showRegisterView()

@@ -56,6 +56,18 @@ class TaskProvider {
         return mutableData
     }
 
+    fun deleteTask(idTask:TaskModel): LiveData<TaskModel>{
+        val mutableData = MutableLiveData<TaskModel>()
+        db.collection("task").document(idTask.innerId)
+            .delete()
+            .addOnSuccessListener {
+                Logger.i("Success delete task")
+                mutableData.value = idTask
+            }
+            .addOnFailureListener { e -> Logger.i("Failure delete task ${e.message}") }
+        return mutableData
+    }
+
     private fun updateTask2(taskModel: TaskModel){
         db.collection("task")
             .document(taskModel.innerId)

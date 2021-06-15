@@ -35,4 +35,18 @@ class SprintViewModel: ViewModel() {
         }
         return mutableData
     }
+    fun updateSprintActive(sprintModel: SprintModel): LiveData<SprintModel>{
+        val mutableData = MutableLiveData<SprintModel>()
+        repo.updateSprintActive(sprintModel).observeForever{ sprintResult ->
+            mutableData.value = sprintResult
+        }
+        return mutableData
+    }
+    fun deleteSprint(sprintModel: SprintModel): LiveData<SprintModel>{
+        val mutableData = MutableLiveData<SprintModel>()
+        repo.deleteSprint(sprintModel).observeForever{ sprintResult ->
+            mutableData.value = sprintResult
+        }
+        return mutableData
+    }
 }
