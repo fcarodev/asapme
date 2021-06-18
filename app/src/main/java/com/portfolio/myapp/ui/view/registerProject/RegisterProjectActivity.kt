@@ -104,4 +104,8 @@ class RegisterProjectActivity : AppCompatActivity() {
         backFromActivityAnimation()
         finish()
     }
+
+    override fun onBackPressed() {
+        goToHome()
+    }
 }

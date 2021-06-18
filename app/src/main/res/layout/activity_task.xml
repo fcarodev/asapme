@@ -44,6 +44,16 @@
                 app:layout_constraintTop_toTopOf="@+id/btnBackDetailTask" />
 
 
+            <TextView
+                android:id="@+id/txtLabelSprint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre sprint"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnBackDetailTask" />
 
             <TextView
                 android:id="@+id/txtSprintNameTask"
@@ -52,10 +62,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/colorPrimary"
-                android:layout_marginTop="32dp"
                 android:text="Sprint hola"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnBackDetailTask" />
+                app:layout_constraintTop_toBottomOf="@+id/txtLabelSprint" />
 
             <ProgressBar
                 android:id="@+id/progressSprintTask"
@@ -92,6 +101,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
+        android:elevation="8dp"
+        android:background="@drawable/shape_dummy_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewTask">
@@ -102,7 +113,7 @@
             style="@style/textTitleActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lista de Tarea"
+            android:text="Lista de Tareas"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

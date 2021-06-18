@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.portfolio.myapp.data.model.project.ProjectModel
+import com.portfolio.myapp.data.model.task.TaskModel
 import com.portfolio.myapp.utils.manager.HawkManager
 
 
@@ -71,4 +72,54 @@ class UserProvider {
             }
     }
 
+    fun getUserByIdAndPass(userModel: UserModel):LiveData<UserModel>{
+        val mutableData = MutableLiveData<UserModel>()
+        db.collection("user")
+            .whereEqualTo("innerId",userModel.innerId)
+            .whereEqualTo("password",userModel.password)
+            .get()
+            .addOnSuccessListener { resultSprints ->
+                var userModelInner = mutableListOf<UserModel>()
+                userModelInner = resultSprints.toObjects(UserModel::class.java)
+                if (userModelInner.isEmpty()){
+                    mutableData.value = UserModel()
+                }else {
+                    mutableData.value = userModelInner[0]
+                }
+            }
+        return mutableData
+    }
+    fun getUserByMailAndRut(userModel: UserModel):LiveData<UserModel>{
+        val mutableData = MutableLiveData<UserModel>()
+        db.collection("user")
+            .whereEqualTo("email",userModel.email)
+            .whereEqualTo("rut",userModel.rut)
+            .get()
+            .addOnSuccessListener { resultSprints ->
+                var userModelInner = mutableListOf<UserModel>()
+                userModelInner = resultSprints.toObjects(UserModel::class.java)
+                if (userModelInner.isEmpty()){
+                    mutableData.value = UserModel()
+                }else {
+                    mutableData.value = userModelInner[0]
+                }
+            }
+        return mutableData
+    }
+     fun updateUserData(userModel: UserModel):LiveData<UserModel>{
+         val mutableData = MutableLiveData<UserModel>()
+        db.collection("user")
+            .document(userModel.innerId)
+            .set(userModel)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Logger.i("Success update")
+                    mutableData.value = userModel
+                } else {
+                    Logger.i("Fail update")
+                    mutableData.value = UserModel()
+                }
+            }
+         return mutableData
+    }
 }

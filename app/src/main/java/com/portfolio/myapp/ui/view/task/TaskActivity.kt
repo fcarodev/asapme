@@ -20,6 +20,8 @@ import com.portfolio.myapp.data.model.task.TaskModel
 import com.portfolio.myapp.ui.view.projectdetail.SprintActivity
 import com.portfolio.myapp.ui.view.registerTask.RegisterTaskActivity
 import com.portfolio.myapp.utils.Utils
+import com.portfolio.myapp.utils.constant.ITEM_EMPTY_DATA
+import com.portfolio.myapp.utils.constant.ITEM_PLACEHOLDER
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
@@ -99,7 +101,7 @@ class TaskActivity : AppCompatActivity(), TaskAdapter.TaskClickListener,
                 if (listTask.isEmpty()) {
                     constListTask.visibility = View.GONE
                     val taskList = mutableListOf<TaskModel>()
-                    taskList.add(TaskModel("EmptyDataTask"))
+                    taskList.add(TaskModel(ITEM_EMPTY_DATA))
                     adapter.setListTask(taskList)
                     adapter.notifyDataSetChanged()
                 } else {
@@ -202,8 +204,12 @@ class TaskActivity : AppCompatActivity(), TaskAdapter.TaskClickListener,
 
     fun showPlaceholderTask(){
         val taskList = mutableListOf<TaskModel>()
-        taskList.add(TaskModel("PlaceholderDataTask"))
+        taskList.add(TaskModel(ITEM_PLACEHOLDER))
         adapter.setListTask(taskList)
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onBackPressed() {
+        goToSprints()
     }
 }

@@ -4,20 +4,20 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.ViewAnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.github.florent37.viewanimator.ViewAnimator
 import com.google.android.material.button.MaterialButton
 import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
 import com.portfolio.myapp.ui.view.home.HomeActivity
 import com.portfolio.myapp.ui.view.register.RegisterActivity
+import com.portfolio.myapp.ui.view.updateUser.ResetPasswordActivity
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
-import kotlinx.android.synthetic.main.activity_login.*
-import com.github.florent37.viewanimator.ViewAnimator
 import com.portfolio.myapp.viewmodel.UserViewModel
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
     lateinit var btnLogin: MaterialButton
@@ -32,7 +32,9 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         txtAddUser = findViewById(R.id.txtAddUser)
 
-
+        txtForgotPass.setOnClickListener {
+            goToResetPassword()
+        }
         txtRegister.setOnClickListener {
             goToRegister()
         }
@@ -67,6 +69,18 @@ class LoginActivity : AppCompatActivity() {
             .start()
     }
 
+    private fun goToResetPassword() {
+
+            val intent =
+                Intent(this, ResetPasswordActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            goToActivityAnimation()
+            finish()
+
+    }
+
+
+
     fun doLogin() {
         val email = email.text.toString()
         val pass = password.text.toString()
@@ -89,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-    fun goToRegister(){
+    fun goToRegister() {
         val intent =
             Intent(this, RegisterActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)

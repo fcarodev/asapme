@@ -108,5 +108,7 @@ class RegisterActivity : AppCompatActivity() {
         goToActivityAnimation()
         finish()
     }
-
+    override fun onBackPressed() {
+        goToLogin()
+    }
 }

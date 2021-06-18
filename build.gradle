@@ -6,6 +6,9 @@ buildscript {
         maven {
             url "https://maven.google.com"
         }
+        maven {
+            url "https://maven.java.net/content/groups/public/"
+        }
         google()
         jcenter()
 
@@ -25,6 +28,9 @@ allprojects {
         mavenCentral()
         maven {
             url "https://maven.google.com"
+        }
+        maven {
+            url "https://maven.java.net/content/groups/public/"
         }
         google()
         jcenter()

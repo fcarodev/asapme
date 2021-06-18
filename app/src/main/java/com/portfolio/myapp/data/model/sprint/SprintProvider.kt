@@ -87,7 +87,7 @@ class SprintProvider {
     private fun updateSprint2(sprint: SprintModel){
         db.collection("sprint")
             .document(sprint.innerId)
-            .update("innerId", sprint.innerId)
+            .set(sprint)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     Logger.i("Sprint Success update")

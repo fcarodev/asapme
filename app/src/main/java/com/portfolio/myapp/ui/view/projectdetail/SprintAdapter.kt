@@ -14,6 +14,8 @@ import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.sprint.SprintModel
+import com.portfolio.myapp.utils.constant.ITEM_EMPTY_DATA
+import com.portfolio.myapp.utils.constant.ITEM_PLACEHOLDER
 import kotlinx.android.synthetic.main.item_row_empty_data_sprint.view.*
 import kotlinx.android.synthetic.main.item_row_sprint.view.*
 import kotlinx.android.synthetic.main.item_row_task.view.*
@@ -28,10 +30,10 @@ class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Ad
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (sprintList[0].innerId == "EmptyDataSprintt") {
+        if (sprintList[0].innerId == ITEM_EMPTY_DATA) {
             return 0
         }
-        if (sprintList[0].innerId == "PlaceholderDataSprint") {
+        if (sprintList[0].innerId == ITEM_PLACEHOLDER) {
             return 1
         }
         return 2
@@ -67,18 +69,18 @@ class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Ad
 
     override fun onBindViewHolder(holder: SprintViewHolder<*>, position: Int) {
         when (holder) {
-            is SprintAdapter.SprintEmptyData -> holder.bindView(SprintModel("EmptyDataSprintt"), sprintClickListener)
-            is SprintAdapter.SprintPlaceholder -> holder.bindView(SprintModel("PlaceholderDataSprint"), sprintClickListener)
+            is SprintAdapter.SprintEmptyData -> holder.bindView(SprintModel(ITEM_EMPTY_DATA), sprintClickListener)
+            is SprintAdapter.SprintPlaceholder -> holder.bindView(SprintModel(ITEM_PLACEHOLDER), sprintClickListener)
             is SprintAdapter.SprintViewHolderData -> holder.bindView(sprintList[position], sprintClickListener)
         }
     }
 
 
     override fun getItemCount(): Int {
-        if (sprintList[0].innerId == "EmptyDataSprintt") {
+        if (sprintList[0].innerId == ITEM_EMPTY_DATA) {
             return 1
         }
-        if (sprintList[0].innerId == "PlaceholderDataSprint") {
+        if (sprintList[0].innerId == ITEM_PLACEHOLDER) {
             return 10
         }
         return sprintList.size
@@ -105,7 +107,7 @@ class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Ad
                 itemView.txtSprintName.setTextColor(Color.parseColor("#303F9F"))
             }
             if(sprintModel.actualProgress == "0"){
-                progressBarProject.progress = 0
+                progressBarProject.progress = -1
             }else{
                 progressBarProject.progress =   itemView.txtSprintPercent.text.toString().replace("%","").toInt()
 
@@ -113,9 +115,14 @@ class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Ad
 
             itemView.txtInitDateSprint.text = "Inicio: ${sprintModel.dateInit}"
             itemView.txtFinishDateSprint.text = "Termino: ${sprintModel.dateFinish}"
+            itemView.cardDetailProject.setOnLongClickListener{
+                sprintClickListener.setOnLongClickListener(sprintModel)
+                return@setOnLongClickListener true
+            }
             itemView.cardDetailProject.setOnClickListener{
                 sprintClickListener.onSprintClickListener(sprintModel)
             }
+
         }
     }
     inner class SprintEmptyData(itemView:View):SprintViewHolder<SprintModel>(itemView){
@@ -144,5 +151,6 @@ class SprintAdapter(var sprintClickListener:SprintClickListener):RecyclerView.Ad
     interface SprintClickListener {
         fun onSprintClickListener(sprintModel: SprintModel)
         fun onCreateSprintClickListener()
+        fun setOnLongClickListener(sprintModel: SprintModel)
     }
 }

@@ -23,6 +23,8 @@ import com.portfolio.myapp.ui.view.registerSprint.RegisterSprintActivity
 import com.portfolio.myapp.ui.view.task.TaskActivity
 import com.portfolio.myapp.ui.view.updateProjectStyle.UpdateProjectStyleActivity
 import com.portfolio.myapp.utils.Utils
+import com.portfolio.myapp.utils.constant.ITEM_EMPTY_DATA
+import com.portfolio.myapp.utils.constant.ITEM_PLACEHOLDER
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
@@ -30,6 +32,7 @@ import com.portfolio.myapp.viewmodel.ProjectViewModel
 import com.portfolio.myapp.viewmodel.SprintViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_project_detail.*
+import kotlinx.android.synthetic.main.activity_update_project_style.*
 import kotlinx.android.synthetic.main.alert_dialog_delete_task.view.*
 
 
@@ -61,7 +64,10 @@ class SprintActivity : AppCompatActivity(), SprintAdapter.SprintClickListener,
         showPlaceholderData()
 
         actualProject = HawkManager().getCurrentProject()
-        window.statusBarColor = Color.parseColor(actualProject.colorBackground.toString())
+        if(actualProject.colorBackground.contains("#")){
+            window.statusBarColor = Color.parseColor(actualProject.colorBackground.toString())
+        }
+
         settingViewColor(actualProject)
         settingViewData(actualProject)
 
@@ -88,7 +94,7 @@ class SprintActivity : AppCompatActivity(), SprintAdapter.SprintClickListener,
                 if (listSprints.isEmpty()) {
                     constraintLayoutSprint.visibility = View.INVISIBLE
                     val sprintList = mutableListOf<SprintModel>()
-                    sprintList.add(SprintModel("EmptyDataSprintt"))
+                    sprintList.add(SprintModel(ITEM_EMPTY_DATA))
                     adapter.setListSprint(sprintList)
                     adapter.notifyDataSetChanged()
                 } else {
@@ -144,22 +150,36 @@ class SprintActivity : AppCompatActivity(), SprintAdapter.SprintClickListener,
     }
 
     fun settingViewColor(project: ProjectModel) {
-        materialCardView.getBackground()
-            .setTint(Color.parseColor(project.colorBackground.toString()))
+        if(project.colorBackground.contains("#")){
+            val csl = ColorStateList.valueOf(Color.parseColor(project.colorText.toString()))
+            materialCardView.getBackground().setTint(Color.parseColor(project.colorBackground.toString()))
+            btnBackDetailProject.getBackground()
+                .setTint(Color.parseColor(project.colorBackground.toString()))
+            btnBackDetailProject.iconTint = csl
+            imgEditProjectStyle.getBackground()
+                .setTint(Color.parseColor(project.colorBackground.toString()))
+            imgEditProjectStyle.iconTint = csl
+        }else{
+            val id: Int = getResources().getIdentifier("com.portfolio.myapp:drawable/${project.colorBackground}", null, null)
+            constCardProject.setBackgroundResource(id)
+
+            btnBackDetailProject.backgroundTintList = ColorStateList.valueOf(0x00000000)
+            btnBackDetailProject.setTextColor(Color.parseColor(project.colorText.toString()))
+            btnBackDetailProject.iconTint = ColorStateList.valueOf(Color.parseColor(project.colorText.toString()))
+
+
+        }
+
         txtNameProjectDetail.setTextColor(Color.parseColor(project.colorText.toString()))
         txtDescProjectDetail.setTextColor(Color.parseColor(project.colorText.toString()))
         txtSprintProjectDetail.setTextColor(Color.parseColor(project.colorText.toString()))
 
-        btnBackDetailProject.getBackground()
-            .setTint(Color.parseColor(project.colorBackground.toString()))
-        imgEditProjectStyle.getBackground()
-            .setTint(Color.parseColor(project.colorBackground.toString()))
+
 
         txtTitleDetailProject.setTextColor(Color.parseColor(project.colorText.toString()))
         txtPercentDetail.setTextColor(Color.parseColor(project.colorText.toString()))
-        val csl = ColorStateList.valueOf(Color.parseColor(project.colorText.toString()))
-        imgEditProjectStyle.iconTint = csl
-        btnBackDetailProject.iconTint = csl
+
+
         //imgProjectDetail.clipToOutline = true
 
     }
@@ -185,12 +205,20 @@ class SprintActivity : AppCompatActivity(), SprintAdapter.SprintClickListener,
 
     override fun onSprintClickListener(sprintModel: SprintModel) {
         HawkManager().setCurrentSprint(sprintModel)
-        bottomSheetDetailSprint.show(this.supportFragmentManager, "bottomSheetDetailSprint")
+        goToTasks()
     }
 
     override fun onCreateSprintClickListener() {
         HawkManager().setCurrentSprint(SprintModel("-1"))
         goToCreateSprint()
+    }
+
+    override fun setOnLongClickListener(sprintModel: SprintModel) {
+        HawkManager().setCurrentSprint(sprintModel)
+        if(!bottomSheetDetailSprint.isAdded){
+            bottomSheetDetailSprint.show(this.supportFragmentManager, "bottomSheetDetailSprint")
+
+        }
     }
 
     private fun goToCreateSprint() {
@@ -236,7 +264,7 @@ class SprintActivity : AppCompatActivity(), SprintAdapter.SprintClickListener,
     }
     private fun showPlaceholderData(){
         val sprintList = mutableListOf<SprintModel>()
-        sprintList.add(SprintModel("PlaceholderDataSprint"))
+        sprintList.add(SprintModel(ITEM_PLACEHOLDER))
         adapter.setListSprint(sprintList)
         adapter.notifyDataSetChanged()
     }
@@ -276,5 +304,8 @@ class SprintActivity : AppCompatActivity(), SprintAdapter.SprintClickListener,
         viewModelSprint.deleteSprint(currentSprint).observe(this, Observer { sprintResult->
             getSprints()
         })
+    }
+    override fun onBackPressed() {
+        goToHome()
     }
 }

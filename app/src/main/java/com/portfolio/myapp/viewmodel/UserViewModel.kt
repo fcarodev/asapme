@@ -23,4 +23,27 @@ class UserViewModel:ViewModel() {
         }
         return mutableData
     }
+    fun getUserByIdAndPass(userModel: UserModel):LiveData<UserModel>{
+        val mutableData = MutableLiveData<UserModel>()
+        repo.getUserByIdAndPass(userModel).observeForever{ user ->
+            mutableData.value = user
+        }
+        return mutableData
+    }
+
+    fun updateUser(userModel: UserModel):LiveData<UserModel>{
+        val mutableData = MutableLiveData<UserModel>()
+        repo.updateUserData(userModel).observeForever{ user ->
+            mutableData.value = user
+        }
+        return mutableData
+    }
+
+    fun getUserByMailAndRut(userModel: UserModel):LiveData<UserModel>{
+        val mutableData = MutableLiveData<UserModel>()
+        repo.getUserByMailAndRut(userModel).observeForever{ user ->
+            mutableData.value = user
+        }
+        return mutableData
+    }
 }

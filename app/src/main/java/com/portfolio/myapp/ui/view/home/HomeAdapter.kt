@@ -13,6 +13,8 @@ import com.github.florent37.viewanimator.ViewAnimator
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.project.ProjectModel
 import com.portfolio.myapp.utils.Utils
+import com.portfolio.myapp.utils.constant.ITEM_EMPTY_DATA
+import com.portfolio.myapp.utils.constant.ITEM_PLACEHOLDER
 import com.portfolio.myapp.utils.manager.HawkManager
 import kotlinx.android.synthetic.main.item_row_empty_data_home.view.*
 import kotlinx.android.synthetic.main.item_row_home.view.*
@@ -28,10 +30,10 @@ class HomeAdapter(private val context: Context, var itemClickListener: ProjectCl
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (projectList[0].name == "EmptyDataProject") {
+        if (projectList[0].name == ITEM_EMPTY_DATA) {
             return 0
         }
-        if (projectList[0].name == "PlaceholderDataProject") {
+        if (projectList[0].name == ITEM_PLACEHOLDER) {
             return 1
         }
         return 2
@@ -64,11 +66,11 @@ class HomeAdapter(private val context: Context, var itemClickListener: ProjectCl
     override fun onBindViewHolder(holder: HomeViewHolder<*>, position: Int) {
         when (holder) {
             is ProjectEmptyData -> holder.bindView(
-                ProjectModel("EmptyDataProject"),
+                ProjectModel(ITEM_EMPTY_DATA),
                 itemClickListener
             )
             is ProjectPlaceHolderData -> holder.bindView(
-                ProjectModel("PlaceholderDataProject"),
+                ProjectModel(ITEM_PLACEHOLDER),
                 itemClickListener
             )
             is ProjectViewHolderData -> holder.bindView(projectList[position], itemClickListener)
@@ -77,10 +79,10 @@ class HomeAdapter(private val context: Context, var itemClickListener: ProjectCl
     }
 
     override fun getItemCount(): Int {
-        if (projectList[0].name.equals("EmptyDataProject")) {
+        if (projectList[0].name.equals(ITEM_EMPTY_DATA)) {
             return 1
         }
-        if (projectList[0].name.equals("PlaceholderDataProject")) {
+        if (projectList[0].name.equals(ITEM_PLACEHOLDER)) {
             return 10
         }
         return projectList.size
@@ -93,7 +95,6 @@ class HomeAdapter(private val context: Context, var itemClickListener: ProjectCl
     inner class ProjectViewHolderData(itemView: View) : HomeViewHolder<ProjectModel>(itemView) {
 
         override fun bindView(projectModel: ProjectModel, itemClickListener: ProjectClickListener) {
-
             val progressBarHome: ProgressBar =
                 itemView.findViewById(R.id.progressBarProjectHomeInit)
             itemView.imgProjectHome.clipToOutline = true
@@ -116,8 +117,17 @@ class HomeAdapter(private val context: Context, var itemClickListener: ProjectCl
             itemView.txtPercentHome.text = "${projectModel.progress}%"
             itemView.txtPercentHome.setTextColor(Color.parseColor(projectModel.colorText.toString()))
             //progressBarHome.progress = itemView.txtPercentHome.text.toString().replace("%","").toInt()
-            itemView.cardViewProjectHome.getBackground()
-                .setTint(Color.parseColor(projectModel.colorBackground.toString()))
+            if(projectModel.colorBackground.contains("#")){
+                itemView.cardViewProjectHome.getBackground().setTint(Color.parseColor(projectModel.colorBackground.toString()))
+            }else{
+                val id: Int = itemView.context.getResources().getIdentifier(
+                    "com.portfolio.myapp:drawable/${projectModel.colorBackground}",
+                    null,
+                    null
+                )
+                itemView.constViewProjectHome.setBackgroundResource(id)
+            }
+
 
             itemView.cardViewProjectHome.setOnClickListener {
                 HawkManager().setCurrentProject(projectModel)

@@ -19,6 +19,8 @@ import com.portfolio.myapp.ui.view.registerProject.RegisterProjectActivity
 import com.portfolio.myapp.ui.view.splash.SplashActivity
 import com.portfolio.myapp.ui.view.updateUser.ChangePasswordActivity
 import com.portfolio.myapp.ui.view.updateUser.UpdateUserActivity
+import com.portfolio.myapp.utils.constant.ITEM_EMPTY_DATA
+import com.portfolio.myapp.utils.constant.ITEM_PLACEHOLDER
 import com.portfolio.myapp.utils.extentions.backFromActivityAnimation
 import com.portfolio.myapp.utils.extentions.goToActivityAnimation
 import com.portfolio.myapp.utils.manager.HawkManager
@@ -45,7 +47,7 @@ class HomeActivity : AppCompatActivity(), BottomSheetProfile.ProfileClickListene
         recyclerViewHome.adapter = adapter
 
         val projectList = mutableListOf<ProjectModel>()
-        projectList.add(ProjectModel("PlaceholderDataProject"))
+        projectList.add(ProjectModel(ITEM_PLACEHOLDER))
         adapter.setListProject(projectList)
         adapter.notifyDataSetChanged()
 
@@ -66,10 +68,10 @@ class HomeActivity : AppCompatActivity(), BottomSheetProfile.ProfileClickListene
         }
 
         imgUser.setOnClickListener {
-            bottomSheetRegisterUser.show(
-                this.supportFragmentManager,
-                "bottomSheetRegisterUser"
-            )
+            if(!bottomSheetRegisterUser.isAdded){
+                bottomSheetRegisterUser.show(this.supportFragmentManager, "bottomSheetRegisterUser")
+
+            }
         }
 
         addSortProject.setOnClickListener {
@@ -94,13 +96,13 @@ class HomeActivity : AppCompatActivity(), BottomSheetProfile.ProfileClickListene
 
     fun getAllProjectByUser() {
         val projectListEmpty1 = mutableListOf<ProjectModel>()
-        projectListEmpty1.add(ProjectModel("PlaceholderDataProject"))
+        projectListEmpty1.add(ProjectModel(ITEM_PLACEHOLDER))
         showDataList(projectListEmpty1)
         val id = HawkManager().getUserLoggedIn().innerId
         viewModel.getAllProjectByUser(id).observe(this, Observer { projectList ->
             if (projectList.isEmpty()) {
                 val projectListEmpty2 = mutableListOf<ProjectModel>()
-                projectListEmpty2.add(ProjectModel("EmptyDataProject"))
+                projectListEmpty2.add(ProjectModel(ITEM_EMPTY_DATA))
                 showDataList(projectListEmpty2)
             } else {
                 projectListSort = projectList

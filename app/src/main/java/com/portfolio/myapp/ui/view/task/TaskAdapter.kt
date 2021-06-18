@@ -11,6 +11,8 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.florent37.viewanimator.ViewAnimator
 import com.portfolio.myapp.R
 import com.portfolio.myapp.data.model.task.TaskModel
+import com.portfolio.myapp.utils.constant.ITEM_EMPTY_DATA
+import com.portfolio.myapp.utils.constant.ITEM_PLACEHOLDER
 import kotlinx.android.synthetic.main.item_row_empty_data_task.view.*
 import kotlinx.android.synthetic.main.item_row_task.view.*
 
@@ -44,10 +46,10 @@ class TaskAdapter(val itemClickListener: TaskClickListener) :RecyclerView.Adapte
         }
     }
     override fun getItemViewType(position: Int): Int {
-        if (taskList[0].idSprint == "EmptyDataTask") {
+        if (taskList[0].idSprint == ITEM_EMPTY_DATA) {
             return 0
         }
-        if (taskList[0].idSprint == "PlaceholderDataTask") {
+        if (taskList[0].idSprint == ITEM_PLACEHOLDER) {
             return 1
         }
         return 2
@@ -56,11 +58,11 @@ class TaskAdapter(val itemClickListener: TaskClickListener) :RecyclerView.Adapte
     override fun onBindViewHolder(holder: TaskViewHolder<*>, position: Int) {
         when (holder) {
             is TaskAdapter.TaskViewEmptyData -> holder.bindView(
-                TaskModel("EmptyDataTask"),
+                TaskModel(ITEM_EMPTY_DATA),
                 itemClickListener
             )
             is TaskAdapter.TaskViewPlaceholder -> holder.bindView(
-                TaskModel("PlaceholderDataTask"),
+                TaskModel(ITEM_PLACEHOLDER),
                 itemClickListener
             )
             is TaskAdapter.TaskViewHolderData -> holder.bindView(
@@ -71,10 +73,10 @@ class TaskAdapter(val itemClickListener: TaskClickListener) :RecyclerView.Adapte
     }
 
     override fun getItemCount(): Int {
-        if (taskList[0].idSprint == "EmptyDataTask") {
+        if (taskList[0].idSprint == ITEM_EMPTY_DATA) {
             return 1
         }
-        if (taskList[0].idSprint == "PlaceholderDataTask") {
+        if (taskList[0].idSprint == ITEM_PLACEHOLDER) {
             return 5
         }
         return taskList.size

@@ -185,4 +185,8 @@ class RegisterSprintActivity : AppCompatActivity() {
             .start()
 
     }
+
+    override fun onBackPressed() {
+        goToDetailProject()
+    }
 }

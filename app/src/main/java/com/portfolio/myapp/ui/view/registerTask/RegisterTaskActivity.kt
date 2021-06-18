@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.github.florent37.viewanimator.ViewAnimator
@@ -113,5 +114,9 @@ class RegisterTaskActivity : AppCompatActivity() {
         startActivity(intent)
         backFromActivityAnimation()
         finish()
+    }
+
+    override fun onBackPressed() {
+        goToTaskList()
     }
 }

@@ -7,28 +7,21 @@
     android:background="@color/white"
     tools:context=".ui.view.updateProjectStyle.UpdateProjectStyleActivity">
 
-    <RelativeLayout
-        android:id="@+id/relative"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardEditStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="-16dp"
-            android:layout_marginEnd="0dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:layout_height="180dp"
+            app:cardCornerRadius="0dp"
             android:paddingTop="16dp"
-            app:cardCornerRadius="16dp">
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constEditStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="16dp">
@@ -60,6 +53,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
                     android:background="@drawable/round_corner_shape"
                     android:src="@drawable/ic_project_placeholder"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -119,15 +113,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
-    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relative">
+        app:layout_constraintTop_toBottomOf="@+id/cardEditStyle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -140,108 +133,57 @@
                 android:id="@+id/materialCardView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorTaskUnfinish"
-                android:clickable="true"
+                android:layout_marginLeft="1dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginRight="1dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:elevation="4dp"
                 app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="#f7f9fc"
+                app:strokeWidth="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/textView2222"
-                        style="@style/textTitleActivity"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabColorLayout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Color de tarjeta"
-                        android:textSize="16sp"
+                        android:background="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tabIndicatorColor="@color/colorPrimary"
+                        app:tabSelectedTextColor="@color/colorPrimary"
+                        app:tabTextColor="@color/colorSecondaryText">
 
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabSelectColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Color de tarjeta 1" />
 
-                    <TextView
-                        android:id="@+id/hueTitleTextView"
-                        android:layout_width="0dp"
-                        android:textSize="12sp"
-                        android:gravity="start"
-                        style="@style/textTitleActivity"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="Color principal"
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabCustomtColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Color de tarjeta 2" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPagerColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2222" />
-
-                    <codes.side.andcolorpicker.hsl.HSLColorPickerSeekBar
-                        android:id="@+id/hueColorPickerSeekBar"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="4dp"
-                        app:hslColoringMode="pure"
-                        app:hslMode="hue"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/hueTitleTextView" />
-
-                    <TextView
-                        android:id="@+id/saturationTitleTextView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="4dp"
-                        android:text="Saturacion"
-                        android:textSize="12sp"
-                        android:gravity="start"
-                        style="@style/textTitleActivity"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/hueColorPickerSeekBar" />
-
-                    <codes.side.andcolorpicker.hsl.HSLColorPickerSeekBar
-                        android:id="@+id/saturationColorPickerSeekBar"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="4dp"
-                        app:hslColoringMode="pure"
-                        app:hslMode="saturation"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/saturationTitleTextView" />
-
-                    <TextView
-                        android:id="@+id/lightnessTitleTextView"
-                        android:layout_width="0dp"
-                        android:textSize="12sp"
-                        android:gravity="start"
-                        style="@style/textTitleActivity"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="4dp"
-                        android:text="Luminocidad"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/saturationColorPickerSeekBar" />
-
-                    <codes.side.andcolorpicker.hsl.HSLColorPickerSeekBar
-                        android:id="@+id/lightnessColorPickerSeekBar"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="4dp"
-                        app:hslColoringMode="pure"
-                        app:hslMode="lightness"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/lightnessTitleTextView" />
+                        app:layout_constraintTop_toBottomOf="@+id/tabColorLayout" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -251,40 +193,58 @@
                 android:id="@+id/materialCardView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/colorTaskUnfinish"
+                android:layout_marginRight="1dp"
+                android:layout_marginBottom="1dp"
+                android:backgroundTint="@color/white"
                 android:clickable="true"
+                android:elevation="4dp"
                 app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView3"
+                app:strokeColor="#f7f9fc"
+                app:strokeWidth="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/textView222"
-                        style="@style/textTitleActivity"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabIconLayout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Imagen de projecto"
-                        android:textSize="16sp"
+                        android:background="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tabIndicatorColor="@color/colorPrimary"
+                        app:tabSelectedTextColor="@color/colorPrimary"
+                        app:tabTextColor="@color/colorSecondaryText">
 
-                    <ImageView
-                        android:id="@+id/imgProjectStyleHolder"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/round_corner_shape"
-                        android:src="@drawable/ic_project_placeholder"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabSelectIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Icon de tarjeta 1" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabCustomtIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Icon de tarjeta 2" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPagerIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView222" />
-
+                        app:layout_constraintTop_toBottomOf="@+id/tabIconLayout" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

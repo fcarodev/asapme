@@ -7,12 +7,14 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_splash"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_splash"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApp">
-        <activity android:name=".ui.view.registerTask.RegisterTaskActivity"></activity>
+        android:theme="@style/Theme.MyApp"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.view.updateUser.ResetPasswordActivity"></activity>
+        <activity android:name=".ui.view.registerTask.RegisterTaskActivity" />
         <activity android:name=".ui.view.registerSprint.RegisterSprintActivity" />
         <activity android:name=".ui.view.task.TaskActivity" />
         <activity android:name=".ui.view.registerProject.RegisterProjectActivity" />
